@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "db:migrate": "wrangler d1 execute analytics --file schema.sql"
+    "db:migrate": "wrangler d1 execute analytics --file schema.sql",
+    "db:upgrade:phase2": "wrangler d1 execute analytics --file migrations/0002_phase_two.sql"
   },
   "devDependencies": {
     "wrangler": "^3.0.0"

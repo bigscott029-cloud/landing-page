@@ -16,6 +16,7 @@
       </div>
       <div class="controls">
         <input id="endpoint" type="url" placeholder="Worker URL e.g. https://affiliate-analytics.your.workers.dev">
+        <input id="api-key" type="password" placeholder="Dashboard API key">
         <select id="range">
           <option value="1970-01-01">All time</option>
           <option value="day">Last 24 hours</option>
@@ -31,14 +32,29 @@
       <div class="card"><span>Unique Visitors</span><strong id="visitors">0</strong></div>
       <div class="card"><span>Page Visits</span><strong id="visits">0</strong></div>
       <div class="card"><span>Button Clicks</span><strong id="clicks">0</strong></div>
+      <div class="card"><span>WhatsApp Redirects</span><strong id="redirects">0</strong></div>
       <div class="card"><span>Conversion Rate</span><strong id="conversion">0%</strong></div>
+      <div class="card"><span>Bounce Rate</span><strong id="bounce">0%</strong></div>
+      <div class="card"><span>Avg Session</span><strong id="session">0s</strong></div>
       <div class="card"><span>Returning Visits</span><strong id="returning">0</strong></div>
     </section>
 
     <section class="grid">
       <div class="panel">
+        <h2>Funnel</h2>
+        <div id="funnel" class="list"></div>
+      </div>
+      <div class="panel">
+        <h2>Live Feed</h2>
+        <div id="live" class="list"></div>
+      </div>
+      <div class="panel">
         <h2>Top Countries</h2>
         <div id="countries" class="list"></div>
+      </div>
+      <div class="panel">
+        <h2>Top Cities</h2>
+        <div id="cities" class="list"></div>
       </div>
       <div class="panel">
         <h2>Top Campaigns</h2>
@@ -52,6 +68,23 @@
         <h2>Daily Visits</h2>
         <div id="daily" class="list"></div>
       </div>
+    </section>
+
+    <section class="panel events-panel">
+      <h2>Campaign Comparison</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th>Visitors</th>
+            <th>Visits</th>
+            <th>Clicks</th>
+            <th>Redirects</th>
+            <th>Conv.</th>
+          </tr>
+        </thead>
+        <tbody id="campaign-comparison"></tbody>
+      </table>
     </section>
 
     <section class="panel events-panel">

@@ -6,6 +6,10 @@
   min-width: min(480px, 90vw);
 }
 
+#api-key {
+  min-width: min(220px, 90vw);
+}
+
 .status {
   color: #b45309;
 }

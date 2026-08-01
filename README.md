@@ -36,6 +36,12 @@ npm run db:migrate
 npm run deploy
 ```
 
+If you already ran the first schema before these phase-two additions, run this once before deploying:
+
+```bash
+npm run db:upgrade:phase2
+```
+
 The D1 binding is already configured in `worker/wrangler.toml`:
 
 ```toml
@@ -54,3 +60,34 @@ wrangler d1 execute analytics --file schema.sql
 ## Dashboard
 
 Open `dashboard/view.html`, enter the deployed Worker URL, and click `Refresh`. The dashboard stores that URL in your browser only and supports CSV export through `/export`.
+
+For local viewing:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open:
+
+```text
+http://localhost:8000/dashboard/view.html
+```
+
+## Dashboard Protection
+
+Set a Worker secret before deploying if you want the stats endpoints protected:
+
+```bash
+wrangler secret put DASHBOARD_TOKEN
+```
+
+When `DASHBOARD_TOKEN` is set, the dashboard must send the same value in the `Dashboard API key` field. This protects `/stats`, `/events`, `/live`, and `/export`. The public `/track` endpoint stays open so visitors can report events.
+
+## Phase Two Additions
+
+- Bot filtering for common crawlers and preview bots
+- Funnel tracking for visit → click → WhatsApp redirect
+- Session IDs, average session duration, and bounce rate
+- Campaign comparison table
+- Live visitor/event feed
+- City-level location summary

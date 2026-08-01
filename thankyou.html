@@ -40,26 +40,101 @@
       text-align: center;
       padding: 20px;
     }
+
+    .box {
+      max-width: 420px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 14px 18px;
+      background: #16a34a;
+      color: #fff;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .hint {
+      color: #6b7280;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 12px;
+    }
   </style>
 
   <script>
-    setTimeout(function () {
+    var WHATSAPP_INVITE_CODE = "L2P6K9nyhXLGyWptwYlTFb";
+    var WHATSAPP_GROUP_URL = "https://chat.whatsapp.com/" + WHATSAPP_INVITE_CODE;
+    var WHATSAPP_APP_GROUP_URL = "whatsapp://chat?code=" + WHATSAPP_INVITE_CODE;
+    var ANDROID_INTENT_URL = "intent://chat.whatsapp.com/" + WHATSAPP_INVITE_CODE + "#Intent;scheme=https;package=com.whatsapp;S.browser_fallback_url=" + encodeURIComponent(WHATSAPP_GROUP_URL) + ";end";
+    var redirected = false;
+
+    function trackRedirect(method) {
       if (window.AffiliateTracker) {
         window.AffiliateTracker.send("redirect", {
-          label: "WhatsApp Redirect",
-          destination: "https://chat.whatsapp.com/L2P6K9nyhXLGyWptwYlTFb"
+          label: "WhatsApp Redirect - " + method,
+          destination: WHATSAPP_GROUP_URL
         });
       }
+    }
 
-      window.location.href = "https://chat.whatsapp.com/L2P6K9nyhXLGyWptwYlTFb";
-    }, 2000);
+    function getDevice() {
+      var userAgent = navigator.userAgent || "";
+
+      if (/Android/i.test(userAgent)) return "android";
+      if (/iPhone|iPad|iPod/i.test(userAgent)) return "ios";
+
+      return "desktop";
+    }
+
+    function openWhatsApp(method) {
+      if (redirected) return;
+
+      redirected = true;
+      trackRedirect(method);
+
+      if (getDevice() === "android") {
+        window.location.href = ANDROID_INTENT_URL;
+        return;
+      }
+
+      if (getDevice() === "ios") {
+        window.location.href = WHATSAPP_APP_GROUP_URL;
+
+        setTimeout(function () {
+          window.location.href = WHATSAPP_GROUP_URL;
+        }, 1200);
+        return;
+      }
+
+      window.location.href = WHATSAPP_GROUP_URL;
+    }
+
+    window.addEventListener("DOMContentLoaded", function () {
+      var openButton = document.getElementById("open-whatsapp");
+
+      openButton.href = getDevice() === "android" ? ANDROID_INTENT_URL : WHATSAPP_APP_GROUP_URL;
+      openButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        redirected = false;
+        openWhatsApp("manual");
+      });
+
+      setTimeout(function () {
+        openWhatsApp("auto");
+      }, 650);
+    });
   </script>
 </head>
 
 <body>
-  <div>
+  <div class="box">
     <h2>You're in! 🎉</h2>
-    <p>Redirecting you to the WhatsApp group…</p>
+    <p>Opening WhatsApp directly…</p>
+    <a id="open-whatsapp" class="btn" href="https://chat.whatsapp.com/L2P6K9nyhXLGyWptwYlTFb">Open WhatsApp Group</a>
+    <p class="hint">If TikTok’s browser blocks automatic opening, tap the button once.</p>
   </div>
 </body>
 </html>

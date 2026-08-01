@@ -4,6 +4,23 @@
   var config = window.AFFILIATE_ANALYTICS || {};
   var endpoint = config.endpoint || "/track";
   var siteId = config.siteId || "default";
+  var sessionId = getSessionId();
+  var startedAt = Date.now();
+  var exitSent = false;
+
+  function getSessionId() {
+    var key = "affiliate_session_id";
+    var current = sessionStorage.getItem(key);
+
+    if (current) {
+      return current;
+    }
+
+    current = "s_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 10);
+    sessionStorage.setItem(key, current);
+
+    return current;
+  }
 
   function buildPayload(event, extra) {
     var visitor = window.AnalyticsFingerprint.getVisitor();
@@ -13,8 +30,10 @@
     return Object.assign({
       site_id: siteId,
       visitor_id: visitor.id,
+      session_id: sessionId,
       returning: visitor.returning,
       event: event,
+      engagement_ms: Date.now() - startedAt,
       page: window.location.pathname || "/",
       page_url: window.location.href,
       device: utils.getDeviceType(),
@@ -63,6 +82,22 @@
     });
   }
 
+  function bindExit() {
+    function sendExit() {
+      if (exitSent) return;
+
+      exitSent = true;
+      send("page_exit");
+    }
+
+    window.addEventListener("pagehide", sendExit);
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "hidden") {
+        sendExit();
+      }
+    });
+  }
+
   window.AffiliateTracker = {
     send: send
   };
@@ -71,9 +106,11 @@
     document.addEventListener("DOMContentLoaded", function () {
       send("visit");
       bindClicks();
+      bindExit();
     });
   } else {
     send("visit");
     bindClicks();
+    bindExit();
   }
 })(window, document);
