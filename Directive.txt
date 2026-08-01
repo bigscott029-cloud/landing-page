@@ -1,0 +1,153 @@
+In this folder is my index.html and thankyou.html codes that I use for my affiliates link to get my leads to my whatsapp or any other directives destination. It is hosted on render via github workflows. 
+It currently holds tiktok pixels to ensure tracking, I want to add more custom delivery to it to track my leads and know how many visit, clicked button and got redirected, all useful data rather than just guesses and hope, something much more effective and without the use of a database involved (by that I mean something like supabase as I would like the page to still respond fast, people don't like to be kept waiting). 
+
+I got a suggestion to use cloudflare and then also, expand my codebase as such:
+project/
+│
+├── index.html                ← my landing page
+├── thankyou.html
+│
+├── css/
+│   └── style.css (this is only necessary for the view.html page, the index.html only needs the merit tracking features embedded)
+│
+├── js/
+│   ├── tracker.js            ← Analytics collector
+│   ├── utils.js
+│   └── fingerprint.js        ← Visitor identification
+│
+├── dashboard/
+│   ├── view.html             ← Analytics dashboard
+│   ├── dashboard.js
+│   ├── dashboard.css
+│   └── login.js              ← Optional password protection
+│
+├── worker/
+│   ├── worker.js             ← Cloudflare Worker
+│   ├── schema.sql
+│   ├── wrangler.toml
+│   └── package.json
+│
+└── README.md
+
+The finished project will include:
+
+✅ Unique visitor tracking
+✅ Returning visitor detection
+✅ Button click tracking
+✅ Page view tracking
+✅ Device type
+✅ Browser
+✅ Operating System
+✅ Screen size
+✅ Language
+✅ Timezone
+✅ Referrer
+✅ UTM campaign/source
+✅ Live visitor count
+✅ Conversion rate
+✅ Dashboard
+✅ Country & city (derived server-side)
+✅ Daily/weekly/monthly statistics
+✅ Export to CSV
+✅ Very lightweight client script (around 5–8 KB minified)
+✅ Uses navigator.sendBeacon() so it doesn't noticeably slow page loads
+
+Some extra's that might be considered later on that are valuable for affiliate campaigns:
+Top landing pages
+Top referrers
+Session duration
+Bounce detection (did they leave without clicking?)
+Funnel view (Visit → Click → Thank-you page)
+
+I also have a couple of ideas that go beyond basic analytics: These can be setup as the second phase after the first phase is done and delivered first of all. 
+A live visitor feed ("Someone from Lagos just visited 12 seconds ago")
+Campaign comparison (TikTok vs Instagram vs Telegram vs Direct)
+Heatmaps showing the countries and cities sending the most traffic
+Automatic bot filtering so crawlers don't inflate your numbers
+
+One of the core ideas is that: I'd be able to reuse the same backend for all of them by changing just one configuration line in each landing page.
+
+
+For the current build, here is the cloudflare ID needed: 4c851261-5eec-4bb5-a278-ebdc406b8ef9
+
+This is somewhat how the functino would run:
+Inside the Worker configuration:
+
+[[d1_databases]]
+binding = "DB"
+
+database_name = "analytics"
+
+database_id = "your_database_id"
+
+
+Now inside your Worker:
+env.DB
+becomes the database.
+
+Example:
+await env.DB.prepare(
+"SELECT * FROM visits"
+).all();
+
+That's all.
+
+ 
+Create the tables inside the necessary file:
+schema.sql
+
+Example:
+CREATE TABLE visits(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+visitor_id TEXT,
+event TEXT,
+page TEXT,
+country TEXT,
+city TEXT,
+device TEXT,
+browser TEXT,
+os TEXT,
+language TEXT,
+timezone TEXT,
+screen TEXT,
+referrer TEXT,
+utm_source TEXT,
+utm_medium TEXT,
+utm_campaign TEXT,
+created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+Then wrangler should be configured to be able to run:
+wrangler d1 execute analytics --file schema.sql
+
+So, something like this: Every visitor
+Imagine someone opens the page.
+
+The tracker sends
+
+{
+  "visitor":"3d0f5...",
+  "event":"visit",
+  "page":"/",
+  "screen":"390x844",
+  "language":"en-US"
+}
+
+The Worker receives it.
+The Worker inserts it.
+Nobody waits.
+The page continues loading.
+
+As for the Dashboard
+when I open view.html
+
+GET
+/stats
+The Worker executes
+SELECT COUNT(*) FROM visits;
+Returns
+{
+"visitors":81,
+"clicks":32
+}
+Dashboard updates.
