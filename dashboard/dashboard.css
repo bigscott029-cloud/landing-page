@@ -1,0 +1,11 @@
+.events-panel {
+  margin-top: 16px;
+}
+
+#endpoint {
+  min-width: min(480px, 90vw);
+}
+
+.status {
+  color: #b45309;
+}
