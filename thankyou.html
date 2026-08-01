@@ -62,6 +62,11 @@
       line-height: 1.5;
       margin-top: 12px;
     }
+
+    .status {
+      font-weight: bold;
+      margin: 8px 0 4px;
+    }
   </style>
 
   <script>
@@ -114,6 +119,7 @@
 
     window.addEventListener("DOMContentLoaded", function () {
       var openButton = document.getElementById("open-whatsapp");
+      var countdown = document.getElementById("countdown");
 
       openButton.href = getDevice() === "android" ? ANDROID_INTENT_URL : WHATSAPP_APP_GROUP_URL;
       openButton.addEventListener("click", function (event) {
@@ -123,8 +129,12 @@
       });
 
       setTimeout(function () {
+        countdown.textContent = "1";
+      }, 1000);
+
+      setTimeout(function () {
         openWhatsApp("auto");
-      }, 650);
+      }, 2000);
     });
   </script>
 </head>
@@ -132,9 +142,10 @@
 <body>
   <div class="box">
     <h2>You're in! 🎉</h2>
-    <p>Opening WhatsApp directly…</p>
+    <p class="status">Redirecting you to the WhatsApp group…</p>
+    <p>Opening WhatsApp directly in <span id="countdown">2</span> seconds.</p>
     <a id="open-whatsapp" class="btn" href="https://chat.whatsapp.com/L2P6K9nyhXLGyWptwYlTFb">Open WhatsApp Group</a>
-    <p class="hint">If TikTok’s browser blocks automatic opening, tap the button once.</p>
+    <p class="hint">If you're not redirected automatically, tap the button above.</p>
   </div>
 </body>
 </html>
