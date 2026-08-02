@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS visits (
   site_id TEXT NOT NULL DEFAULT 'default',
   visitor_id TEXT,
   session_id TEXT,
-  returning INTEGER DEFAULT 0,
+  returning_visitor INTEGER DEFAULT 0,
   event TEXT NOT NULL,
   engagement_ms INTEGER DEFAULT 0,
   is_bot INTEGER DEFAULT 0,

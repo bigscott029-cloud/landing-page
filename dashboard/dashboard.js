@@ -6,8 +6,9 @@
   var apiKeyInput = document.getElementById("api-key");
   var rangeInput = document.getElementById("range");
   var exportLink = document.getElementById("export");
+  var defaultWorkerUrl = "https://affiliate-analytics.leadspage.workers.dev";
 
-  endpointInput.value = localStorage.getItem("analytics_worker_url") || "";
+  endpointInput.value = localStorage.getItem("analytics_worker_url") || defaultWorkerUrl;
   apiKeyInput.value = sessionStorage.getItem("analytics_api_key") || "";
 
   document.getElementById("refresh").addEventListener("click", load);

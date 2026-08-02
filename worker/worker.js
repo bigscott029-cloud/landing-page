@@ -58,7 +58,7 @@ async function track(request, env) {
 
   await env.DB.prepare(
     `INSERT INTO visits (
-      site_id, visitor_id, session_id, returning, event, engagement_ms, is_bot,
+      site_id, visitor_id, session_id, returning_visitor, event, engagement_ms, is_bot,
       page, page_url, label, destination, country, city, device, browser, os,
       language, timezone, screen, referrer, user_agent, utm_source, utm_medium,
       utm_campaign, utm_term, utm_content
@@ -108,7 +108,7 @@ async function stats(url, env) {
       SUM(CASE WHEN event = 'visit' THEN 1 ELSE 0 END) AS visits,
       SUM(CASE WHEN event = 'click' THEN 1 ELSE 0 END) AS clicks,
       SUM(CASE WHEN event = 'redirect' THEN 1 ELSE 0 END) AS redirects,
-      SUM(CASE WHEN returning = 1 AND event = 'visit' THEN 1 ELSE 0 END) AS returning_visits
+      SUM(CASE WHEN returning_visitor = 1 AND event = 'visit' THEN 1 ELSE 0 END) AS returning_visits
     FROM visits
     WHERE ${where}`
   ).bind(siteId, since).first();

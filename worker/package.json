@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "db:migrate": "wrangler d1 execute analytics --file schema.sql",
-    "db:upgrade:phase2": "wrangler d1 execute analytics --file migrations/0002_phase_two.sql"
+    "db:migrate": "wrangler d1 execute analytics --remote --file schema.sql",
+    "db:migrate:local": "wrangler d1 execute analytics --file schema.sql",
+    "db:upgrade:phase2": "wrangler d1 execute analytics --remote --file migrations/0002_phase_two.sql",
+    "db:upgrade:phase2:local": "wrangler d1 execute analytics --file migrations/0002_phase_two.sql"
   },
   "devDependencies": {
     "wrangler": "^3.0.0"

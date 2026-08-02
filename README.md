@@ -24,7 +24,13 @@ Each tracked page has one reusable config block:
 </script>
 ```
 
-Use a different `siteId` for another landing page or campaign. If the Worker is not routed on the same domain as the page, change `endpoint` to the deployed Worker URL plus `/track`. Because this landing page is hosted on Render, `/track` only works after you either add a Cloudflare route/proxy in front of the same domain or replace it with the full Worker URL.
+Use a different `siteId` for another landing page or campaign. Because this landing page is hosted on Render, the current pages send events directly to the deployed Worker endpoint:
+
+```text
+https://affiliate-analytics.leadspage.workers.dev/track
+```
+
+The old relative `/track` value only works if Cloudflare is proxying the same domain and routing `/track` to the Worker.
 
 ## Cloudflare Worker Setup
 
@@ -41,6 +47,21 @@ If you already ran the first schema before these phase-two additions, run this o
 ```bash
 npm run db:upgrade:phase2
 ```
+
+Important: these scripts use `--remote`, so they affect the Cloudflare-hosted D1 database. Without `--remote`, Wrangler only changes a local development database under `.wrangler/`.
+
+After deployment, the Worker and D1 database run on Cloudflare. They do not depend on your local terminal staying open.
+
+## GitHub Worker Deployment
+
+Backend changes can deploy automatically from GitHub with `.github/workflows/cloudflare-worker.yml`. Add these repository secrets in GitHub:
+
+```text
+CLOUDFLARE_API_TOKEN
+CLOUDFLARE_ACCOUNT_ID
+```
+
+The token needs permission to deploy Workers and access D1 for this account. After those secrets exist, pushing changes under `worker/` triggers a Worker deployment.
 
 The D1 binding is already configured in `worker/wrangler.toml`:
 
@@ -59,7 +80,7 @@ wrangler d1 execute analytics --file schema.sql
 
 ## Dashboard
 
-Open `dashboard/view.html`, enter the deployed Worker URL, and click `Refresh`. The dashboard stores that URL in your browser only and supports CSV export through `/export`.
+Open `dashboard/view.html` and click `Refresh`. The deployed Worker URL is prefilled as `https://affiliate-analytics.leadspage.workers.dev`. The dashboard stores any URL override in your browser only and supports CSV export through `/export`.
 
 For local viewing:
 
@@ -91,3 +112,18 @@ When `DASHBOARD_TOKEN` is set, the dashboard must send the same value in the `Da
 - Campaign comparison table
 - Live visitor/event feed
 - City-level location summary
+
+## Social Redirect Links
+
+`thankyou.html` uses `js/social-redirect.js` for app-first handoff. The current destination is WhatsApp:
+
+```js
+destinationUrl: "https://chat.whatsapp.com/L2P6K9nyhXLGyWptwYlTFb"
+```
+
+Supported app-first destinations:
+
+- WhatsApp group invites: `https://chat.whatsapp.com/<invite-code>`
+- WhatsApp direct links: `https://wa.me/<number>` or `https://api.whatsapp.com/...`
+- Telegram links: `https://t.me/<username-or-group>`
+- Any other URL falls back to normal browser redirect
