@@ -68,7 +68,7 @@ Automatic bot filtering so crawlers don't inflate your numbers
 One of the core ideas is that: I'd be able to reuse the same backend for all of them by changing just one configuration line in each landing page.
 
 
-For the current build, here is the cloudflare ID needed: 4c851261-5eec-4bb5-a278-ebdc406b8ef9
+For the current build, here is the cloudflare ID needed:
 
 This is somewhat how the functino would run:
 Inside the Worker configuration:
