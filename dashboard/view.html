@@ -24,9 +24,12 @@
           <option value="month">Last 30 days</option>
         </select>
         <button id="refresh">Refresh</button>
+        <button id="reset-endpoint" type="button">Use Live Worker</button>
         <a id="export" href="#" download>Export CSV</a>
       </div>
     </header>
+
+    <p id="dashboard-status" class="dashboard-status">Loading analytics…</p>
 
     <section class="cards">
       <div class="card"><span>Unique Visitors</span><strong id="visitors">0</strong></div>
@@ -105,6 +108,6 @@
     </section>
   </main>
 
-  <script src="dashboard.js"></script>
+  <script src="dashboard.js?v=20260808"></script>
 </body>
 </html>

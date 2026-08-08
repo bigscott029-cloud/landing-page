@@ -6,12 +6,18 @@
   var apiKeyInput = document.getElementById("api-key");
   var rangeInput = document.getElementById("range");
   var exportLink = document.getElementById("export");
+  var statusElement = document.getElementById("dashboard-status");
   var defaultWorkerUrl = "https://affiliate-analytics.leadspage.workers.dev";
 
-  endpointInput.value = localStorage.getItem("analytics_worker_url") || defaultWorkerUrl;
+  endpointInput.value = initialWorkerUrl();
   apiKeyInput.value = sessionStorage.getItem("analytics_api_key") || "";
 
   document.getElementById("refresh").addEventListener("click", load);
+  document.getElementById("reset-endpoint").addEventListener("click", function () {
+    endpointInput.value = defaultWorkerUrl;
+    localStorage.removeItem("analytics_worker_url");
+    load();
+  });
   exportLink.addEventListener("click", exportCsv);
   endpointInput.addEventListener("change", function () {
     localStorage.setItem("analytics_worker_url", endpointInput.value.trim());
@@ -22,6 +28,18 @@
     load();
   });
   rangeInput.addEventListener("change", load);
+
+  function initialWorkerUrl() {
+    var params = new URLSearchParams(window.location.search);
+    var queryWorker = params.get("worker");
+
+    if (queryWorker && /^https:\/\//i.test(queryWorker)) {
+      localStorage.setItem("analytics_worker_url", queryWorker);
+      return queryWorker;
+    }
+
+    return defaultWorkerUrl;
+  }
 
   function workerUrl(path) {
     var base = endpointInput.value.trim().replace(/\/$/, "");
@@ -52,6 +70,7 @@
 
     if (!baseStats) {
       setEmpty("Enter your deployed Worker URL above.");
+      setStatus("Enter your deployed Worker URL above.", "error");
       return;
     }
 
@@ -62,6 +81,7 @@
     exportLink.href = workerUrl("/export") + "?site_id=" + encodeURIComponent(siteId);
 
     try {
+      setStatus("Loading analytics from " + endpointInput.value.trim() + "…");
       var responses = await Promise.all([
         fetchJson(statsUrl),
         fetchJson(eventsUrl),
@@ -71,8 +91,12 @@
       renderStats(responses[0]);
       renderEvents(responses[1].events || []);
       renderLive(responses[2].live || []);
+      setStatus("Connected. Last updated " + new Date().toLocaleString() + ".", "success");
     } catch (error) {
-      setEmpty(error.message || "Could not load analytics. Check the Worker URL and deployment.");
+      var message = error.message || "Could not load analytics. Check the Worker URL and deployment.";
+
+      setEmpty(message);
+      setStatus(message, "error");
     }
   }
 
@@ -211,6 +235,11 @@
 
   function setEmpty(message) {
     document.getElementById("events").innerHTML = '<tr><td colspan="6" class="muted">' + escapeHtml(message) + "</td></tr>";
+  }
+
+  function setStatus(message, state) {
+    statusElement.textContent = message;
+    statusElement.className = "dashboard-status" + (state ? " " + state : "");
   }
 
   function text(id, value) {
