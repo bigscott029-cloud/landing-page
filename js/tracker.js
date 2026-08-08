@@ -56,7 +56,7 @@
     var payload = JSON.stringify(buildPayload(event, extra));
 
     if (navigator.sendBeacon) {
-      var blob = new Blob([payload], { type: "application/json" });
+      var blob = new Blob([payload], { type: "text/plain;charset=UTF-8" });
       navigator.sendBeacon(endpoint, blob);
       return;
     }

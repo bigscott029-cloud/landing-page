@@ -47,7 +47,7 @@ export default {
 };
 
 async function track(request, env) {
-  const body = await request.json();
+  const body = await readJson(request);
   const cf = request.cf || {};
   const userAgent = body.user_agent || request.headers.get("User-Agent") || "";
   const isBot = BOT_PATTERN.test(userAgent);
@@ -93,6 +93,16 @@ async function track(request, env) {
   ).run();
 
   return json({ ok: true });
+}
+
+async function readJson(request) {
+  const text = await request.text();
+
+  if (!text) {
+    return {};
+  }
+
+  return JSON.parse(text);
 }
 
 async function stats(url, env) {
