@@ -2,94 +2,81 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Redirecting...</title>
+  <title>Connecting you | Evermore AI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d27">
   <script>
-    window.AFFILIATE_ANALYTICS = {
-      siteId: "high-posting-jobs",
-      endpoint: "https://affiliate-analytics.leadspage.workers.dev/track"
-    };
+    window.AFFILIATE_ANALYTICS = { siteId: "high-posting-jobs", endpoint: "https://affiliate-analytics.leadspage.workers.dev/track" };
   </script>
-  <script src="js/utils.js?v=20260808" defer></script>
-  <script src="js/fingerprint.js?v=20260808" defer></script>
-  <script src="js/tracker.js?v=20260808" defer></script>
-  <script src="js/social-redirect.js?v=20260808" defer></script>
-
-  <!-- TikTok Pixel Code Start -->
+  <script src="js/utils.js?v=20260909" defer></script>
+  <script src="js/fingerprint.js?v=20260909" defer></script>
+  <script src="js/tracker.js?v=20260909" defer></script>
+  <script src="js/social-redirect.js?v=20260909" defer></script>
   <script>
   !function (w, d, t) {
-    w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-  var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-  ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-
-
+    w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
     ttq.load('D5CLAHBC77U7BSLDEQ90');
     ttq.page();
     ttq.track('CompleteRegistration');
   }(window, document, 'ttq');
   </script>
-  <!-- TikTok Pixel Code End -->
-
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f9fafb;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .box {
-      max-width: 420px;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 14px 18px;
-      background: #16a34a;
-      color: #fff;
-      border-radius: 10px;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .hint {
-      color: #6b7280;
-      font-size: 13px;
-      line-height: 1.5;
-      margin-top: 12px;
-    }
-
-    .status {
-      font-weight: bold;
-      margin: 8px 0 4px;
-    }
+    :root { color-scheme: dark; --navy: #080d27; --cyan: #54e7ff; --gold: #f6c65b; --muted: #a9b8dd; }
+    * { box-sizing: border-box; }
+    body { display: grid; place-items: center; min-height: 100vh; margin: 0; padding: 20px; color: #f7fbff; font: 16px/1.6 Arial, sans-serif; text-align: center; background: radial-gradient(circle at 50% 0, rgba(38, 137, 222, .3), transparent 42%), var(--navy); }
+    .box { width: min(100%, 500px); border: 1px solid rgba(141, 170, 235, .25); border-radius: 24px; padding: 34px 26px; background: rgba(18, 28, 67, .78); box-shadow: 0 24px 80px rgba(0, 0, 0, .28); }
+    .mark { color: var(--gold); font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { margin: 16px 0 8px; font-size: 32px; }
+    .status { color: var(--cyan); font-weight: 700; margin: 10px 0 4px; }
+    .countdown { color: var(--muted); margin: 0; }
+    .btn { display: inline-block; margin-top: 22px; padding: 14px 22px; border-radius: 12px; color: #07112d; background: var(--cyan); font-weight: 800; text-decoration: none; }
+    .btn:hover, .btn:focus-visible { background: #fff; outline: 3px solid rgba(84, 231, 255, .28); }
+    .hint { color: var(--muted); font-size: 13px; line-height: 1.5; margin: 18px 0 0; }
   </style>
-
   <script>
+    var SOCIAL_DESTINATIONS = {
+      whatsapp: "https://chat.whatsapp.com/IgSJ2TQZC3VIqUUpDvz02v?s=sh&p=i&ilr=4&amv=2",
+      telegram: "https://t.me/your_telegram_group"
+    };
+
     window.addEventListener("DOMContentLoaded", function () {
+      var selected = new URLSearchParams(window.location.search).get("social");
+      var social = selected === "telegram" ? "telegram" : "whatsapp";
+      var label = social === "telegram" ? "Telegram" : "WhatsApp";
+      var destinationUrl = SOCIAL_DESTINATIONS[social];
+      var status = document.getElementById("status");
+      var countdown = document.getElementById("countdown");
+      var openButton = document.getElementById("open-social");
+
+      document.getElementById("channel").textContent = label;
+
+      if (social === "telegram" && destinationUrl.indexOf("your_telegram_group") !== -1) {
+        status.textContent = "Telegram is ready to connect";
+        countdown.textContent = "—";
+        openButton.textContent = "Add Telegram group link";
+        openButton.href = "https://t.me/";
+        document.getElementById("hint").textContent = "Set SOCIAL_DESTINATIONS.telegram in thankyou.html to your Telegram group invite before sending traffic there.";
+        return;
+      }
+
       window.SocialRedirect.init({
-        destinationUrl: "https://chat.whatsapp.com/IgSJ2TQZC3VIqUUpDvz02v?s=sh&p=i&ilr=4&amv=2",
+        destinationUrl: destinationUrl,
         buttonId: "open-social",
-        buttonText: "Open WhatsApp Group",
+        buttonText: "Open " + label,
         countdownId: "countdown",
         delaySeconds: 2
       });
     });
   </script>
 </head>
-
 <body>
-  <div class="box">
-    <h2>You're in! 🎉</h2>
-    <p class="status">Redirecting you to the WhatsApp group…</p>
-    <p>Opening WhatsApp directly in <span id="countdown">2</span> seconds.</p>
-    <a id="open-social" class="btn" href="https://chat.whatsapp.com/IgSJ2TQZC3VIqUUpDvz02v?s=sh&p=i&ilr=4&amv=2">Open WhatsApp Group</a>
-    <p class="hint">If you're not redirected automatically, tap the button above.</p>
-  </div>
+  <main class="box">
+    <div class="mark">Evermore AI</div>
+    <h1>You're in. 🎉</h1>
+    <p id="status" class="status">Redirecting you to <span id="channel">WhatsApp</span>…</p>
+    <p class="countdown">Opening the app in <span id="countdown">2</span> seconds.</p>
+    <a id="open-social" class="btn" href="https://chat.whatsapp.com/IgSJ2TQZC3VIqUUpDvz02v?s=sh&p=i&ilr=4&amv=2">Open WhatsApp</a>
+    <p id="hint" class="hint">If the app does not open automatically, tap the button above to continue.</p>
+  </main>
 </body>
 </html>

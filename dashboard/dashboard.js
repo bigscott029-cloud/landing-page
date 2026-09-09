@@ -38,7 +38,7 @@
       return queryWorker;
     }
 
-    return defaultWorkerUrl;
+    return localStorage.getItem("analytics_worker_url") || defaultWorkerUrl;
   }
 
   function workerUrl(path) {
@@ -164,10 +164,13 @@
     text("redirects", totals.redirects || 0);
     text("conversion", (totals.conversion_rate || 0) + "%");
     text("bounce", (totals.bounce_rate || 0) + "%");
-    text("session", formatDuration(totals.avg_session_seconds || 0));
-    text("returning", totals.returning_visits || 0);
 
     renderList("funnel", data.funnel || []);
+    renderList("social-breakdown", data.socialBreakdown || []);
+    renderList("audience-quality", [
+      { label: "Returning visits", total: totals.returning_visits || 0 },
+      { label: "Average session", total: formatDuration(totals.avg_session_seconds || 0) }
+    ]);
     renderList("countries", data.topCountries || []);
     renderList("cities", data.topCities || []);
     renderList("campaigns", data.topCampaigns || []);

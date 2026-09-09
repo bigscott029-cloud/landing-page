@@ -51,10 +51,13 @@
 
   function buildTelegramLinks(path, destinationUrl) {
     var cleanPath = path.replace(/^s\//, "");
+    var isInvite = cleanPath.indexOf("+") === 0 || cleanPath.indexOf("joinchat/") === 0;
+    var inviteCode = cleanPath.replace(/^joinchat\//, "").replace(/^\+/, "");
+    var telegramPath = isInvite ? "join?invite=" + encodeURIComponent(inviteCode) : "resolve?domain=" + encodeURIComponent(cleanPath.replace(/^@/, "").split("/")[0]);
 
     return {
-      android: "intent://resolve?domain=" + cleanPath + "#Intent;scheme=tg;package=org.telegram.messenger;S.browser_fallback_url=" + encodeURIComponent(destinationUrl) + ";end",
-      ios: "tg://resolve?domain=" + cleanPath,
+      android: "intent://" + telegramPath + "#Intent;scheme=tg;package=org.telegram.messenger;S.browser_fallback_url=" + encodeURIComponent(destinationUrl) + ";end",
+      ios: "tg://" + telegramPath,
       web: destinationUrl,
       label: "Telegram"
     };

@@ -148,6 +148,19 @@ async function stats(url, env) {
   ).bind(siteId, since).all();
 
   const campaigns = await campaignComparison(env, siteId, since);
+  const socialBreakdown = await env.DB.prepare(
+    `SELECT
+      CASE
+        WHEN lower(COALESCE(label, '')) LIKE '%telegram%' THEN 'Telegram'
+        WHEN lower(COALESCE(label, '')) LIKE '%whatsapp%' THEN 'WhatsApp'
+        ELSE 'Other'
+      END AS label,
+      COUNT(*) AS total
+     FROM visits
+     WHERE ${where} AND event = 'redirect'
+     GROUP BY label
+     ORDER BY total DESC`
+  ).bind(siteId, since).all();
   const topReferrers = await grouped(env, siteId, since, "referrer");
   const topCampaigns = await grouped(env, siteId, since, "utm_campaign");
   const topCountries = await grouped(env, siteId, since, "country");
@@ -194,6 +207,7 @@ async function stats(url, env) {
       avg_session_seconds: Math.round((sessionSummary.avg_engagement_ms || 0) / 1000)
     },
     funnel: normalizeFunnel(funnel.results),
+    socialBreakdown: socialBreakdown.results,
     campaignComparison: campaigns.results.map(addCampaignRates),
     topReferrers: topReferrers.results,
     topCampaigns: topCampaigns.results,
@@ -309,7 +323,7 @@ function normalizeFunnel(rows) {
   return [
     { label: "Visits", total: totals.visit },
     { label: "CTA Clicks", total: totals.click },
-    { label: "WhatsApp Redirects", total: totals.redirect }
+    { label: "App Redirects", total: totals.redirect }
   ];
 }
 
