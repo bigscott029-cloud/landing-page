@@ -18,6 +18,12 @@
     localStorage.removeItem("analytics_worker_url");
     load();
   });
+  document.getElementById("reset-view").addEventListener("click", function () {
+    endpointInput.value = defaultWorkerUrl;
+    rangeInput.value = "1970-01-01";
+    localStorage.removeItem("analytics_worker_url");
+    load();
+  });
   exportLink.addEventListener("click", exportCsv);
   endpointInput.addEventListener("change", function () {
     localStorage.setItem("analytics_worker_url", endpointInput.value.trim());
