@@ -39,6 +39,15 @@ export default {
         return denied || exportCsv(url, env);
       }
 
+      if (url.pathname === "/reset" && request.method === "POST") {
+        if (!env.DASHBOARD_TOKEN) {
+          return json({ error: "Reset is disabled until DASHBOARD_TOKEN is configured." }, 503);
+        }
+
+        const denied = authorize(request, env);
+        return denied || resetData(url, env);
+      }
+
       return json({ ok: true, service: "affiliate-analytics" });
     } catch (error) {
       return json({ error: error.message }, 500);
@@ -268,6 +277,13 @@ async function exportCsv(url, env) {
       "Content-Disposition": "attachment; filename=analytics.csv"
     }
   });
+}
+
+async function resetData(url, env) {
+  const siteId = url.searchParams.get("site_id") || "default";
+  const result = await env.DB.prepare("DELETE FROM visits WHERE site_id = ?").bind(siteId).run();
+
+  return json({ ok: true, site_id: siteId, deleted: result.meta.changes || 0 });
 }
 
 async function grouped(env, siteId, since, field) {

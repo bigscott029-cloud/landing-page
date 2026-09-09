@@ -24,6 +24,7 @@
     localStorage.removeItem("analytics_worker_url");
     load();
   });
+  document.getElementById("backup-reset").addEventListener("click", backupAndReset);
   exportLink.addEventListener("click", exportCsv);
   endpointInput.addEventListener("change", function () {
     localStorage.setItem("analytics_worker_url", endpointInput.value.trim());
@@ -125,16 +126,63 @@
 
       return response.blob();
     }).then(function (blob) {
-      var downloadUrl = URL.createObjectURL(blob);
-      var link = document.createElement("a");
-
-      link.href = downloadUrl;
-      link.download = "analytics.csv";
-      link.click();
-      URL.revokeObjectURL(downloadUrl);
+      downloadBlob(blob, "analytics.csv");
     }).catch(function (error) {
       setEmpty(error.message);
     });
+  }
+
+  async function backupAndReset() {
+    if (!window.confirm("This downloads a CSV backup, then permanently clears all data for this site. Continue?")) {
+      return;
+    }
+
+    var endpoint = workerUrl("/export");
+    var resetEndpoint = workerUrl("/reset") + "?site_id=" + encodeURIComponent(siteId);
+
+    if (!endpoint) {
+      setStatus("Enter your deployed Worker URL before clearing data.", "error");
+      return;
+    }
+
+    var button = document.getElementById("backup-reset");
+    button.disabled = true;
+    setStatus("Creating CSV backup before clearing data…");
+
+    try {
+      var backupResponse = await fetch(endpoint + "?site_id=" + encodeURIComponent(siteId), { headers: authHeaders() });
+
+      if (!backupResponse.ok) {
+        throw new Error(backupResponse.status === 401 ? "Unauthorized. Enter the dashboard API key." : "Backup failed; no data was cleared.");
+      }
+
+      downloadBlob(await backupResponse.blob(), "analytics-backup-" + new Date().toISOString().slice(0, 10) + ".csv");
+      setStatus("Backup downloaded. Clearing analytics data…");
+
+      var resetResponse = await fetch(resetEndpoint, { method: "POST", headers: authHeaders() });
+      var resetResult = await resetResponse.json();
+
+      if (!resetResponse.ok) {
+        throw new Error(resetResult.error || "Data reset failed after backup.");
+      }
+
+      await load();
+      setStatus("Fresh monitoring started. Cleared " + (resetResult.deleted || 0) + " records.", "success");
+    } catch (error) {
+      setStatus(error.message || "Backup and reset failed.", "error");
+    } finally {
+      button.disabled = false;
+    }
+  }
+
+  function downloadBlob(blob, filename) {
+    var downloadUrl = URL.createObjectURL(blob);
+    var link = document.createElement("a");
+
+    link.href = downloadUrl;
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(downloadUrl);
   }
 
   function fetchJson(url) {

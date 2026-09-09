@@ -34,3 +34,9 @@
   border-color: #bbf7d0;
   color: #047857;
 }
+
+.controls .danger {
+  background: #fff1f2;
+  border-color: #fecdd3;
+  color: #be123c;
+}
