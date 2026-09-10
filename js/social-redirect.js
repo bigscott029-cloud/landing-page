@@ -86,11 +86,18 @@
     }
 
     function trackRedirect(method) {
+      var eventId = "redirect_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 10);
+
       if (window.AffiliateTracker) {
         window.AffiliateTracker.send("redirect", {
           label: links.label + " Redirect - " + method,
-          destination: destinationUrl
+          destination: destinationUrl,
+          event_id: eventId
         });
+      }
+
+      if (window.ttq && typeof window.ttq.track === "function") {
+        window.ttq.track("CompleteRegistration", {}, { event_id: eventId });
       }
     }
 

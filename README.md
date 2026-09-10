@@ -104,6 +104,19 @@ wrangler secret put DASHBOARD_TOKEN
 
 When `DASHBOARD_TOKEN` is set, the dashboard must send the same value in the `Dashboard API key` field. This protects `/stats`, `/events`, `/live`, and `/export`. The public `/track` endpoint stays open so visitors can report events.
 
+### TikTok Events API
+
+The Worker can forward CTA clicks and completed social redirects to TikTok without exposing the access token in the website code. Store the token as a Worker secret, set the Pixel ID, and deploy:
+
+```bash
+cd worker
+npx wrangler secret put TIKTOK_ACCESS_TOKEN
+npx wrangler secret put TIKTOK_PIXEL_ID
+npm run deploy
+```
+
+For Events Manager testing, also set `TIKTOK_TEST_EVENT_CODE` as a Worker secret. Remove it after verification so production events are not marked as test events. Rotate any token that has been pasted into chat, source files, or logs.
+
 ## Phase Two Additions
 
 - Bot filtering for common crawlers and preview bots

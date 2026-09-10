@@ -7,7 +7,7 @@ const CORS_HEADERS = {
 const BOT_PATTERN = /bot|crawler|spider|preview|facebookexternalhit|whatsapp|telegrambot|slackbot|discordbot|linkedinbot|twitterbot|pinterest|semrush|ahrefs|curl|wget|python-requests/i;
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
     if (request.method === "OPTIONS") {
@@ -16,7 +16,7 @@ export default {
 
     try {
       if (url.pathname === "/track" && request.method === "POST") {
-        return track(request, env);
+        return track(request, env, ctx);
       }
 
       if (url.pathname === "/stats" && request.method === "GET") {
@@ -55,7 +55,7 @@ export default {
   }
 };
 
-async function track(request, env) {
+async function track(request, env, ctx) {
   const body = await readJson(request);
   const cf = request.cf || {};
   const userAgent = body.user_agent || request.headers.get("User-Agent") || "";
@@ -101,7 +101,55 @@ async function track(request, env) {
     clean(body.utm_content)
   ).run();
 
+  if (env.TIKTOK_ACCESS_TOKEN && env.TIKTOK_PIXEL_ID && ["click", "redirect"].includes(body.event)) {
+    ctx.waitUntil(sendTikTokEvent(request, env, body, cf));
+  }
+
   return json({ ok: true });
+}
+
+async function sendTikTokEvent(request, env, body, cf) {
+  const event = body.event === "redirect" ? "CompleteRegistration" : "ClickButton";
+  const user = {
+    ip: request.headers.get("CF-Connecting-IP") || "",
+    user_agent: body.user_agent || request.headers.get("User-Agent") || ""
+  };
+
+  if (body.ttclid) user.ttclid = clean(body.ttclid);
+  if (body.ttp) user.ttp = clean(body.ttp);
+
+  const payload = {
+    event_source: "web",
+    event_source_id: env.TIKTOK_PIXEL_ID,
+    data: [{
+      event,
+      event_time: Math.floor(Date.now() / 1000),
+      event_id: clean(body.event_id, crypto.randomUUID()),
+      user,
+      page: {
+        url: clean(body.page_url),
+        referrer: clean(body.referrer)
+      },
+      properties: {
+        channel: clean(body.label),
+        country: clean(cf.country),
+        city: clean(cf.city)
+      }
+    }]
+  };
+
+  if (env.TIKTOK_TEST_EVENT_CODE) {
+    payload.test_event_code = env.TIKTOK_TEST_EVENT_CODE;
+  }
+
+  await fetch("https://business-api.tiktok.com/open_api/v1.3/event/track/", {
+    method: "POST",
+    headers: {
+      "Access-Token": env.TIKTOK_ACCESS_TOKEN,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
 }
 
 async function readJson(request) {

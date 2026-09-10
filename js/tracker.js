@@ -33,6 +33,7 @@
       session_id: sessionId,
       returning: visitor.returning,
       event: event,
+      event_id: "evt_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 10),
       engagement_ms: Date.now() - startedAt,
       page: window.location.pathname || "/",
       page_url: window.location.href,
@@ -48,8 +49,23 @@
       utm_medium: query.utm_medium,
       utm_campaign: query.utm_campaign,
       utm_term: query.utm_term,
-      utm_content: query.utm_content
+      utm_content: query.utm_content,
+      ttclid: query.ttclid,
+      ttp: getCookie("_ttp")
     }, extra || {});
+  }
+
+  function getCookie(name) {
+    var prefix = name + "=";
+    var cookies = document.cookie ? document.cookie.split("; ") : [];
+
+    for (var i = 0; i < cookies.length; i++) {
+      if (cookies[i].indexOf(prefix) === 0) {
+        return decodeURIComponent(cookies[i].slice(prefix.length));
+      }
+    }
+
+    return "";
   }
 
   function send(event, extra) {
