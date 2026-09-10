@@ -53,7 +53,12 @@
     var cleanPath = path.replace(/^s\//, "");
     var isInvite = cleanPath.indexOf("+") === 0 || cleanPath.indexOf("joinchat/") === 0;
     var inviteCode = cleanPath.replace(/^joinchat\//, "").replace(/^\+/, "");
+    var url = new URL(destinationUrl);
     var telegramPath = isInvite ? "join?invite=" + encodeURIComponent(inviteCode) : "resolve?domain=" + encodeURIComponent(cleanPath.replace(/^@/, "").split("/")[0]);
+
+    if (!isInvite && url.searchParams.get("text")) {
+      telegramPath += "&text=" + encodeURIComponent(url.searchParams.get("text"));
+    }
 
     return {
       android: "intent://" + telegramPath + "#Intent;scheme=tg;package=org.telegram.messenger;S.browser_fallback_url=" + encodeURIComponent(destinationUrl) + ";end",

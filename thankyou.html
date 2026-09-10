@@ -36,7 +36,7 @@
   <script>
     var SOCIAL_DESTINATIONS = {
       whatsapp: "https://chat.whatsapp.com/IgSJ2TQZC3VIqUUpDvz02v?s=sh&p=i&ilr=4&amv=2",
-      telegram: "https://t.me/your_telegram_group"
+      telegram: "https://t.me/campushubmedia?text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20EverAi"
     };
 
     window.addEventListener("DOMContentLoaded", function () {
@@ -49,15 +49,6 @@
       var openButton = document.getElementById("open-social");
 
       document.getElementById("channel").textContent = label;
-
-      if (social === "telegram" && destinationUrl.indexOf("your_telegram_group") !== -1) {
-        status.textContent = "Telegram is ready to connect";
-        countdown.textContent = "—";
-        openButton.textContent = "Add Telegram group link";
-        openButton.href = "https://t.me/";
-        document.getElementById("hint").textContent = "Set SOCIAL_DESTINATIONS.telegram in thankyou.html to your Telegram group invite before sending traffic there.";
-        return;
-      }
 
       window.SocialRedirect.init({
         destinationUrl: destinationUrl,
