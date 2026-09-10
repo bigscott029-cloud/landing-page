@@ -162,7 +162,7 @@
       var resetResponse = await fetch(resetEndpoint, { method: "POST", headers: authHeaders() });
       var resetResult = await resetResponse.json();
 
-      if (!resetResponse.ok) {
+      if (!resetResponse.ok || typeof resetResult.deleted !== "number") {
         throw new Error(resetResult.error || "Data reset failed after backup.");
       }
 
