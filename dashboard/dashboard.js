@@ -215,7 +215,7 @@
     text("visitors", totals.visitors || 0);
     text("visits", totals.visits || 0);
     text("clicks", totals.clicks || 0);
-    text("redirects", totals.redirects || 0);
+    text("handoffs", totals.handoffs || 0);
     text("conversion", (totals.conversion_rate || 0) + "%");
     text("bounce", (totals.bounce_rate || 0) + "%");
 
@@ -284,7 +284,7 @@
         "<td>" + Number(row.visitors || 0) + "</td>" +
         "<td>" + Number(row.visits || 0) + "</td>" +
         "<td>" + Number(row.clicks || 0) + "</td>" +
-        "<td>" + Number(row.redirects || 0) + "</td>" +
+        "<td>" + Number(row.handoffs || 0) + "</td>" +
         "<td>" + Number(row.conversion_rate || 0) + "%</td>" +
       "</tr>";
     }).join("") : '<tr><td colspan="6" class="muted">No campaign data yet.</td></tr>';

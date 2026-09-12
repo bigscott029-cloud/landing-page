@@ -11,7 +11,7 @@
   </script>
   <script src="js/utils.js?v=20260909" defer></script>
   <script src="js/fingerprint.js?v=20260909" defer></script>
-  <script src="js/tracker.js?v=20260909" defer></script>
+  <script src="js/tracker.js?v=20260912" defer></script>
   <script>
   !function (w, d, t) {
     w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
@@ -61,12 +61,12 @@
       </section>
       <section class="panel">
         <h2>Choose your connection</h2>
-        <p>Join on the platform you already use. We will open the app directly where possible.</p>
+        <p>Tap once to open your preferred community. You will confirm joining inside WhatsApp or Telegram.</p>
         <div class="options">
-          <a href="thankyou.html?social=whatsapp" class="option" data-track-click data-track-label="WhatsApp CTA"><span class="icon" aria-hidden="true">◉</span><span><strong>Use WhatsApp To Get Started</strong><small>Join the active learning group and connect with an active agent account</small></span><span class="arrow" aria-hidden="true">→</span></a>
-          <a href="thankyou.html?social=telegram" class="option telegram" data-track-click data-track-label="Telegram CTA"><span class="icon" aria-hidden="true">➤</span><span><strong>Use Telegram To Get Started</strong><small>Use Telegram for your community access and connect with an active agent account</small></span><span class="arrow" aria-hidden="true">→</span></a>
+          <a href="https://chat.whatsapp.com/L2P6K9nyhXLGyWptwYlTFb" class="option" data-track-click data-track-handoff data-track-label="WhatsApp group handoff"><span class="icon" aria-hidden="true">◉</span><span><strong>Join the WhatsApp Group</strong><small>Open the group, then tap “Join group” in WhatsApp</small></span><span class="arrow" aria-hidden="true">→</span></a>
+          <a href="https://t.me/campushubmedia?text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20EverAi" class="option telegram" data-track-click data-track-handoff data-track-label="Telegram handoff"><span class="icon" aria-hidden="true">➤</span><span><strong>Use Telegram To Get Started</strong><small>Open Telegram for community access and the active agent account</small></span><span class="arrow" aria-hidden="true">→</span></a>
         </div>
-        <p class="note">Choose your preferred platform to get started.</p>
+        <p class="note">We count an outbound handoff when you tap a button. Group joins and messages must be confirmed in the app, so they are not counted as completed leads here.</p>
       </section>
     </div>
     <footer>© 2026 Evermore AI · Built for people ready to make their next move.</footer>

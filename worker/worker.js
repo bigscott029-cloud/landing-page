@@ -101,7 +101,9 @@ async function track(request, env, ctx) {
     clean(body.utm_content)
   ).run();
 
-  if (env.TIKTOK_ACCESS_TOKEN && env.TIKTOK_PIXEL_ID && ["click", "redirect"].includes(body.event)) {
+  // Only send a TikTok conversion signal after a real, visitor-initiated
+  // outbound handoff. Timer redirects are not evidence of a lead.
+  if (env.TIKTOK_ACCESS_TOKEN && env.TIKTOK_PIXEL_ID && body.event === "handoff") {
     ctx.waitUntil(sendTikTokEvent(request, env, body, cf));
   }
 
@@ -109,7 +111,7 @@ async function track(request, env, ctx) {
 }
 
 async function sendTikTokEvent(request, env, body, cf) {
-  const event = body.event === "redirect" ? "CompleteRegistration" : "ClickButton";
+  const event = "ClickButton";
   const user = {
     ip: request.headers.get("CF-Connecting-IP") || "",
     user_agent: body.user_agent || request.headers.get("User-Agent") || ""
@@ -174,7 +176,8 @@ async function stats(url, env) {
       COUNT(DISTINCT session_id) AS sessions,
       SUM(CASE WHEN event = 'visit' THEN 1 ELSE 0 END) AS visits,
       SUM(CASE WHEN event = 'click' THEN 1 ELSE 0 END) AS clicks,
-      SUM(CASE WHEN event = 'redirect' THEN 1 ELSE 0 END) AS redirects,
+      SUM(CASE WHEN event = 'handoff' THEN 1 ELSE 0 END) AS handoffs,
+      COUNT(DISTINCT CASE WHEN event = 'click' AND session_id != '' THEN session_id END) AS click_sessions,
       SUM(CASE WHEN returning_visitor = 1 AND event = 'visit' THEN 1 ELSE 0 END) AS returning_visits
     FROM visits
     WHERE ${where}`
@@ -186,7 +189,7 @@ async function stats(url, env) {
         session_id,
         MAX(engagement_ms) AS engagement_ms,
         SUM(CASE WHEN event = 'visit' THEN 1 ELSE 0 END) AS visits,
-        SUM(CASE WHEN event IN ('click', 'redirect') THEN 1 ELSE 0 END) AS conversions
+        SUM(CASE WHEN event IN ('click', 'handoff') THEN 1 ELSE 0 END) AS conversions
       FROM visits
       WHERE ${where} AND session_id != ''
       GROUP BY session_id
@@ -200,7 +203,7 @@ async function stats(url, env) {
   const funnel = await env.DB.prepare(
     `SELECT event AS label, COUNT(*) AS total
      FROM visits
-     WHERE ${where} AND event IN ('visit', 'click', 'redirect')
+     WHERE ${where} AND event IN ('visit', 'click', 'handoff')
      GROUP BY event`
   ).bind(siteId, since).all();
 
@@ -214,7 +217,7 @@ async function stats(url, env) {
       END AS label,
       COUNT(*) AS total
      FROM visits
-     WHERE ${where} AND event = 'redirect'
+     WHERE ${where} AND event = 'handoff'
      GROUP BY label
      ORDER BY total DESC`
   ).bind(siteId, since).all();
@@ -246,7 +249,6 @@ async function stats(url, env) {
   ).bind(siteId, since).all();
 
   const visitors = totals.visitors || 0;
-  const clicks = totals.clicks || 0;
   const sessions = totals.sessions || 0;
   const bouncedSessions = sessionSummary.bounced_sessions || 0;
 
@@ -256,10 +258,10 @@ async function stats(url, env) {
       visitors,
       sessions,
       visits: totals.visits || 0,
-      clicks,
-      redirects: totals.redirects || 0,
+      clicks: totals.clicks || 0,
+      handoffs: totals.handoffs || 0,
       returning_visits: totals.returning_visits || 0,
-      conversion_rate: visitors ? percent(clicks, visitors) : 0,
+      conversion_rate: sessions ? percent(totals.click_sessions || 0, sessions) : 0,
       bounce_rate: sessions ? percent(bouncedSessions, sessions) : 0,
       avg_session_seconds: Math.round((sessionSummary.avg_engagement_ms || 0) / 1000)
     },
@@ -295,7 +297,7 @@ async function live(url, env) {
   const rows = await env.DB.prepare(
     `SELECT event, country, city, device, browser, utm_source, utm_campaign, created_at
      FROM visits
-     WHERE site_id = ? AND COALESCE(is_bot, 0) = 0 AND event IN ('visit', 'click', 'redirect')
+     WHERE site_id = ? AND COALESCE(is_bot, 0) = 0 AND event IN ('visit', 'click', 'handoff')
      ORDER BY created_at DESC
      LIMIT 20`
   ).bind(siteId).all();
@@ -350,9 +352,10 @@ async function campaignComparison(env, siteId, since) {
     `SELECT
       COALESCE(NULLIF(utm_campaign, ''), NULLIF(utm_source, ''), 'Direct / Unknown') AS label,
       COUNT(DISTINCT visitor_id) AS visitors,
+      COUNT(DISTINCT CASE WHEN event = 'click' AND visitor_id != '' THEN visitor_id END) AS click_visitors,
       SUM(CASE WHEN event = 'visit' THEN 1 ELSE 0 END) AS visits,
       SUM(CASE WHEN event = 'click' THEN 1 ELSE 0 END) AS clicks,
-      SUM(CASE WHEN event = 'redirect' THEN 1 ELSE 0 END) AS redirects
+      SUM(CASE WHEN event = 'handoff' THEN 1 ELSE 0 END) AS handoffs
      FROM visits
      WHERE site_id = ? AND created_at >= ? AND COALESCE(is_bot, 0) = 0
      GROUP BY label
@@ -378,7 +381,7 @@ function authorize(request, env) {
 }
 
 function normalizeFunnel(rows) {
-  const totals = { visit: 0, click: 0, redirect: 0 };
+  const totals = { visit: 0, click: 0, handoff: 0 };
 
   rows.forEach((row) => {
     totals[row.label] = row.total;
@@ -387,14 +390,14 @@ function normalizeFunnel(rows) {
   return [
     { label: "Visits", total: totals.visit },
     { label: "CTA Clicks", total: totals.click },
-    { label: "App Redirects", total: totals.redirect }
+    { label: "Outbound Handoffs", total: totals.handoff }
   ];
 }
 
 function addCampaignRates(row) {
   return {
     ...row,
-    conversion_rate: row.visitors ? percent(row.clicks || 0, row.visitors) : 0
+    conversion_rate: row.visitors ? percent(row.click_visitors || 0, row.visitors) : 0
   };
 }
 

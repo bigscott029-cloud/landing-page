@@ -1,15 +1,15 @@
 # Affiliate Landing Page Analytics
 
-Lightweight lead tracking for `index.html` and `thankyou.html` using a Cloudflare Worker plus D1. The page sends analytics with `navigator.sendBeacon()` so visits, clicks, and redirects do not block the visitor experience.
+Lightweight lead tracking for the single-page `index.html` landing page using a Cloudflare Worker plus D1. The page sends analytics with `navigator.sendBeacon()` so visits and CTA handoffs do not block the visitor experience.
 
 ## What It Tracks
 
 - Unique and returning visitors
-- Page visits, button clicks, and thank-you redirects
+- Page visits, CTA selections, and visitor-initiated WhatsApp/Telegram handoffs
 - Device type, browser, OS, screen size, language, timezone, and referrer
 - UTM source, medium, campaign, term, and content
 - Country and city from Cloudflare request metadata
-- Dashboard totals, conversion rate, recent events, CSV export, and daily stats
+- Dashboard totals, CTA session rate, recent events, CSV export, and daily stats
 
 ## Configure A Landing Page
 
@@ -106,7 +106,7 @@ When `DASHBOARD_TOKEN` is set, the dashboard must send the same value in the `Da
 
 ### TikTok Events API
 
-The Worker can forward CTA clicks and completed social redirects to TikTok without exposing the access token in the website code. Store the token as a Worker secret, set the Pixel ID, and deploy:
+The Worker can forward a visitor-initiated social handoff to TikTok without exposing the access token in the website code. Store the token as a Worker secret, set the Pixel ID to the same Pixel ID used in `index.html`, and deploy:
 
 ```bash
 cd worker
@@ -120,23 +120,18 @@ For Events Manager testing, also set `TIKTOK_TEST_EVENT_CODE` as a Worker secret
 ## Phase Two Additions
 
 - Bot filtering for common crawlers and preview bots
-- Funnel tracking for visit → click → WhatsApp redirect
+- Funnel tracking for visit → CTA selection → outbound handoff
 - Session IDs, average session duration, and bounce rate
 - Campaign comparison table
 - Live visitor/event feed
 - City-level location summary
 
-## Social Redirect Links
+## Social links and lead reporting
 
-`thankyou.html` uses `js/social-redirect.js` for app-first handoff. The current destination is WhatsApp:
+The two destination links are set directly in `index.html`. A tap is an **outbound handoff**, not a completed lead: neither WhatsApp nor Telegram tells this website whether a visitor joined a group or sent a message. Use the group member list, message replies, or a dedicated join form to measure completed leads.
 
-```js
-destinationUrl: "https://chat.whatsapp.com/L2P6K9nyhXLGyWptwYlTFb"
+For reliable TikTok campaign attribution, set the ad's destination URL with UTMs, for example:
+
+```text
+https://your-domain.example/?utm_source=tiktok&utm_medium=paid_social&utm_campaign=september_whatsapp
 ```
-
-Supported app-first destinations:
-
-- WhatsApp group invites: `https://chat.whatsapp.com/<invite-code>`
-- WhatsApp direct links: `https://wa.me/<number>` or `https://api.whatsapp.com/...`
-- Telegram links: `https://t.me/<username-or-group>`
-- Any other URL falls back to normal browser redirect

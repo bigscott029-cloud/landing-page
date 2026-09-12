@@ -95,6 +95,16 @@
         label: target.getAttribute("data-track-label") || target.textContent.trim().slice(0, 80),
         destination: target.href || target.getAttribute("data-destination") || ""
       });
+
+      // A handoff is a visitor-initiated attempt to open WhatsApp or Telegram.
+      // It is deliberately not called a conversion: the destination app owns the
+      // later join/message confirmation and cannot report it back to this page.
+      if (target.hasAttribute("data-track-handoff")) {
+        send("handoff", {
+          label: target.getAttribute("data-track-label") || "Social handoff",
+          destination: target.href || target.getAttribute("data-destination") || ""
+        });
+      }
     });
   }
 

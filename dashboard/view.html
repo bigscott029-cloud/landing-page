@@ -12,7 +12,7 @@
     <header class="dashboard-header">
       <div>
         <h1>Affiliate Analytics</h1>
-        <p>Visits, clicks, campaigns, locations, and recent activity.</p>
+        <p>Visits, CTA selections, outbound handoffs, campaigns, and recent activity.</p>
       </div>
       <div class="controls">
         <input id="endpoint" type="url" placeholder="Worker URL e.g. https://affiliate-analytics.your.workers.dev">
@@ -36,9 +36,9 @@
     <section class="cards">
       <div class="card"><span>Unique Visitors</span><strong id="visitors">0</strong></div>
       <div class="card"><span>Page Visits</span><strong id="visits">0</strong></div>
-      <div class="card"><span>Button Clicks</span><strong id="clicks">0</strong></div>
-      <div class="card"><span>App Redirects</span><strong id="redirects">0</strong></div>
-      <div class="card"><span>Conversion Rate</span><strong id="conversion">0%</strong></div>
+      <div class="card"><span>CTA Selections</span><strong id="clicks">0</strong></div>
+      <div class="card"><span>Outbound Handoffs</span><strong id="handoffs">0</strong></div>
+      <div class="card"><span>CTA Session Rate</span><strong id="conversion">0%</strong></div>
       <div class="card"><span>Bounce Rate</span><strong id="bounce">0%</strong></div>
     </section>
 
@@ -48,7 +48,7 @@
         <div id="funnel" class="list"></div>
       </div>
       <div class="panel">
-        <h2>Destination Handoffs</h2>
+        <h2>Handoffs by Destination</h2>
         <div id="social-breakdown" class="list"></div>
       </div>
       <div class="panel">
@@ -90,8 +90,8 @@
             <th>Visitors</th>
             <th>Visits</th>
             <th>Clicks</th>
-            <th>Redirects</th>
-            <th>Conv.</th>
+            <th>Handoffs</th>
+            <th>CTA rate</th>
           </tr>
         </thead>
         <tbody id="campaign-comparison"></tbody>
@@ -116,6 +116,6 @@
     </section>
   </main>
 
-  <script src="dashboard.js?v=20260910"></script>
+  <script src="dashboard.js?v=20260912"></script>
 </body>
 </html>
