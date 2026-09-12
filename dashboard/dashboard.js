@@ -7,7 +7,7 @@
   var rangeInput = document.getElementById("range");
   var exportLink = document.getElementById("export");
   var statusElement = document.getElementById("dashboard-status");
-  var defaultWorkerUrl = "https://affiliate-analytics.leadspage.workers.dev";
+  var defaultWorkerUrl = "https://affiliate-analytics.chikeeluem171.workers.dev";
 
   endpointInput.value = initialWorkerUrl();
   apiKeyInput.value = sessionStorage.getItem("analytics_api_key") || "";

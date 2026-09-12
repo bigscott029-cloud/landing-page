@@ -27,7 +27,7 @@ Each tracked page has one reusable config block:
 Use a different `siteId` for another landing page or campaign. Because this landing page is hosted on Render, the current pages send events directly to the deployed Worker endpoint:
 
 ```text
-https://affiliate-analytics.leadspage.workers.dev/track
+https://affiliate-analytics.chikeeluem171.workers.dev/track
 ```
 
 The old relative `/track` value only works if Cloudflare is proxying the same domain and routing `/track` to the Worker.
@@ -80,7 +80,7 @@ wrangler d1 execute analytics --file schema.sql
 
 ## Dashboard
 
-Open `dashboard/view.html` and click `Refresh`. The deployed Worker URL is prefilled as `https://affiliate-analytics.leadspage.workers.dev`. The dashboard stores any URL override in your browser only and supports CSV export through `/export`.
+Open `dashboard/view.html` and click `Refresh`. The deployed Worker URL is prefilled as `https://affiliate-analytics.chikeeluem171.workers.dev`. The dashboard stores any URL override in your browser only and supports CSV export through `/export`.
 
 For local viewing:
 
