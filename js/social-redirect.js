@@ -136,7 +136,43 @@
     }, seconds * 1000);
   }
 
+  function bind(config) {
+    var button = document.getElementById(config.buttonId);
+    var destinationUrl = config.destinationUrl;
+
+    if (!button) return;
+
+    var links = buildLinks(destinationUrl);
+
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+      var device = getDevice();
+      var eventId = "redirect_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 10);
+
+      if (window.AffiliateTracker) {
+        window.AffiliateTracker.send("redirect", {
+          label: links.label + " Redirect - manual",
+          destination: destinationUrl,
+          event_id: eventId
+        });
+      }
+
+      if (window.ttq && typeof window.ttq.track === "function") {
+        window.ttq.track("CompleteRegistration", {}, { event_id: eventId });
+      }
+
+      window.location.href = device === "android" ? links.android : device === "ios" ? links.ios : links.web;
+
+      if (device === "ios" && links.ios !== links.web) {
+        setTimeout(function () {
+          window.location.href = links.web;
+        }, 1200);
+      }
+    });
+  }
+
   window.SocialRedirect = {
-    init: init
+    init: init,
+    bind: bind
   };
 })(window, document);
