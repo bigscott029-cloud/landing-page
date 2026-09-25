@@ -44,6 +44,8 @@
     .option strong { display: block; }
     .option small { color: var(--muted); }
     .arrow { margin-left: auto; color: var(--cyan); font-size: 22px; }
+    .whatsapp-fallback { display: inline-block; margin-top: 12px; color: #8fa6d7; font-size: 12px; text-underline-offset: 3px; }
+    .whatsapp-fallback:hover, .whatsapp-fallback:focus-visible { color: var(--cyan); }
     .note { margin-top: 18px !important; font-size: 12px; }
     footer { margin-top: 30px; color: #7182ac; font-size: 12px; }
     @media (max-width: 760px) { main { padding-top: 24px; } .layout { grid-template-columns: 1fr; gap: 28px; min-height: auto; padding-top: 54px; } h1 { font-size: clamp(42px, 14vw, 64px); } .lead { font-size: 17px; } }
@@ -67,7 +69,7 @@
           <a href="https://t.me/everaiafrica_bot" class="option telegram" data-track-click data-track-handoff data-track-label="Telegram handoff"><span class="icon" aria-hidden="true">➤</span><span><strong>Use Telegram To Get Started</strong><small>Get In Touch With An Active Agent On Telegram To Get Started And Join The Community, Active 24/7 To</small></span><span class="arrow" aria-hidden="true">→</span></a>
         </div>
           <br>
-          <a href="https://wa.me/2349078501664?text=Hello%2C+I+am+interested+in+getting+started+with+EverAi" class="option" data-track-click data-track-handoff data-track-label="WhatsApp direct message handoff">Click here <strong>ONLY</strong> if you do not have Telegram</a>
+          <a href="https://wa.me/2349078501664?text=Hello%2C+I+am+interested+in+getting+started+with+EverAi" class="whatsapp-fallback" data-track-click data-track-handoff data-track-label="WhatsApp direct message handoff">Click here <strong>ONLY</strong> if you do not have Telegram</a>
       </section>
       </div>
     <footer>© 2026 Evermore AI · Built for people ready to make their next move.</footer>
