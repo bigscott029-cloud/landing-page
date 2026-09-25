@@ -38,6 +38,7 @@
     .panel p { margin: 0 0 20px; color: var(--muted); }
     .options { display: grid; gap: 12px; }
     .option { display: flex; align-items: center; gap: 14px; border: 1px solid rgba(141, 170, 235, .28); border-radius: 16px; padding: 16px; color: #fff; text-decoration: none; transition: transform .2s, border-color .2s, background .2s; }
+    .option.telegram { animation: attention-pulse 2.8s ease-in-out infinite; }
     .option:hover, .option:focus-visible { transform: translateY(-2px); border-color: var(--cyan); background: rgba(84, 231, 255, .1); outline: none; }
     .icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 13px; background: linear-gradient(135deg, #24d366, #0c8f4b); font-size: 22px; }
     .option.telegram .icon { background: linear-gradient(135deg, #44b9ff, #2879d8); }
@@ -48,6 +49,8 @@
     .whatsapp-fallback:hover, .whatsapp-fallback:focus-visible { color: var(--cyan); }
     .note { margin-top: 18px !important; font-size: 12px; }
     footer { margin-top: 30px; color: #7182ac; font-size: 12px; }
+    @keyframes attention-pulse { 0%, 62%, 100% { box-shadow: 0 0 0 0 rgba(84, 231, 255, 0); } 72% { box-shadow: 0 0 0 8px rgba(84, 231, 255, .16); } 82% { box-shadow: 0 0 0 16px rgba(84, 231, 255, 0); } }
+    @media (prefers-reduced-motion: reduce) { .option.telegram { animation: none; } }
     @media (max-width: 760px) { main { padding-top: 24px; } .layout { grid-template-columns: 1fr; gap: 28px; min-height: auto; padding-top: 54px; } h1 { font-size: clamp(42px, 14vw, 64px); } .lead { font-size: 17px; } }
   </style>
 </head>
