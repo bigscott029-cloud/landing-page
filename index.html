@@ -12,7 +12,6 @@
   <script src="js/utils.js?v=20260909" defer></script>
   <script src="js/fingerprint.js?v=20260909" defer></script>
   <script src="js/tracker.js?v=20260912" defer></script>
-  <script src="js/social-redirect.js?v=20260925" defer></script>
   <script>
   !function (w, d, t) {
     w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
@@ -45,9 +44,9 @@
     .option strong { display: block; }
     .option small { color: var(--muted); }
     .arrow { margin-left: auto; color: var(--cyan); font-size: 22px; }
-    .whatsapp-fallback { margin: 24px 0 0; text-align: center; font-size: 12px; }
-    .whatsapp-fallback a { color: #8fa6d7; text-underline-offset: 3px; }
-    .whatsapp-fallback a:hover, .whatsapp-fallback a:focus-visible { color: var(--cyan); }
+    .telegram-fallback { margin: 24px 0 0; text-align: center; font-size: 12px; }
+    .telegram-fallback a { color: #8fa6d7; text-underline-offset: 3px; }
+    .telegram-fallback a:hover, .telegram-fallback a:focus-visible { color: var(--cyan); }
     .note { margin-top: 18px !important; font-size: 12px; }
     footer { margin-top: 30px; color: #7182ac; font-size: 12px; }
     @media (max-width: 760px) { main { padding-top: 24px; } .layout { grid-template-columns: 1fr; gap: 28px; min-height: auto; padding-top: 54px; } h1 { font-size: clamp(42px, 14vw, 64px); } .lead { font-size: 17px; } }
@@ -66,21 +65,13 @@
       <section class="panel">
         <h2>Choose your connection</h2>        
         <div class="options">
-          <a href="https://t.me/everaiafrica_bot" class="option telegram" data-track-click data-track-handoff data-track-label="Telegram handoff"><span class="icon" aria-hidden="true">➤</span><span><strong>Use Telegram To Get Started</strong><small>Get in touch with an active agent and get started</small></span><span class="arrow" aria-hidden="true">→</span></a>
+          <a href="https://wa.me/2349078501664?text=Hello%2C+I+am+interested+in+getting+started+with+EverAi" class="option" data-track-click data-track-handoff data-track-label="WhatsApp direct message handoff"><span class="icon" aria-hidden="true">◉</span><span><strong>Message Us on WhatsApp</strong><small>Get in touch with an agent and recieve a direct response to learn and get started</small></span><span class="arrow" aria-hidden="true">→</span></a>
           <!-- <a href="https://chat.whatsapp.com/BC25ondiZY0GpTxxUlo0lP?s=cl&p=i&mlu=4&ilr=4" class="option" data-track-click data-track-handoff data-track-label="WhatsApp group handoff"><span class="icon" aria-hidden="true">◉</span><span><strong>Join The WhatsApp Community</strong><small>Open the group, then tap “Join group” in WhatsApp</small></span><span class="arrow" aria-hidden="true">→</span></a> -->
         </div>
-        <p class="whatsapp-fallback"><a id="whatsapp-fallback" href="https://wa.me/2349078501664?text=Hello%2C+I+am+interested+in+getting+started+with+EverAi" data-track-click data-track-handoff data-track-label="WhatsApp fallback handoff">Click here <strong>ONLY</strong> if you do not have Telegram</a></p>
+        <p class="telegram-fallback"><a href="https://t.me/everaiafrica_bot" data-track-click data-track-handoff data-track-label="Telegram fallback handoff">Click here <strong>ONLY</strong> if you do not have Telegram</a></p>
       </section>
     </div>
     <footer>© 2026 Evermore AI · Built for people ready to make their next move.</footer>
   </main>
-  <script>
-    window.addEventListener("DOMContentLoaded", function () {
-      window.SocialRedirect.bind({
-        buttonId: "whatsapp-fallback",
-        destinationUrl: "https://wa.me/2349078501664?text=Hello%2C+I+am+interested+in+getting+started+with+EverAi"
-      });
-    });
-  </script>
 </body>
 </html>
