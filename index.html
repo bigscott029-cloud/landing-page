@@ -44,6 +44,9 @@
     .option strong { display: block; }
     .option small { color: var(--muted); }
     .arrow { margin-left: auto; color: var(--cyan); font-size: 22px; }
+    .telegram-fallback { margin: 24px 0 0; text-align: center; font-size: 12px; }
+    .telegram-fallback a { color: #8fa6d7; text-underline-offset: 3px; }
+    .telegram-fallback a:hover, .telegram-fallback a:focus-visible { color: var(--cyan); }
     .note { margin-top: 18px !important; font-size: 12px; }
     footer { margin-top: 30px; color: #7182ac; font-size: 12px; }
     @media (max-width: 760px) { main { padding-top: 24px; } .layout { grid-template-columns: 1fr; gap: 28px; min-height: auto; padding-top: 54px; } h1 { font-size: clamp(42px, 14vw, 64px); } .lead { font-size: 17px; } }
@@ -64,8 +67,8 @@
         <div class="options">
           <a href="https://wa.me/2349078501664?text=Hello%2C+I+am+interested+in+getting+started+with+EverAi" class="option" data-track-click data-track-handoff data-track-label="WhatsApp direct message handoff"><span class="icon" aria-hidden="true">◉</span><span><strong>Message Us on WhatsApp</strong><small>Get in touch with an agent and recieve a direct response to learn and get started</small></span><span class="arrow" aria-hidden="true">→</span></a>
           <!-- <a href="https://chat.whatsapp.com/BC25ondiZY0GpTxxUlo0lP?s=cl&p=i&mlu=4&ilr=4" class="option" data-track-click data-track-handoff data-track-label="WhatsApp group handoff"><span class="icon" aria-hidden="true">◉</span><span><strong>Join The WhatsApp Community</strong><small>Open the group, then tap “Join group” in WhatsApp</small></span><span class="arrow" aria-hidden="true">→</span></a> -->
-          <a href="https://t.me/everaiafrica_bot" class="option telegram" data-track-click data-track-handoff data-track-label="Telegram handoff"><span class="icon" aria-hidden="true">➤</span><span><strong>Use Telegram To Get Started</strong><small>Get In Touch With An Active Agent On Telegram To Get Started And Join The Community, Active 24/7 To</small></span><span class="arrow" aria-hidden="true">→</span></a>
         </div>
+        <p class="telegram-fallback"><a href="https://t.me/everaiafrica_bot" data-track-click data-track-handoff data-track-label="Telegram fallback handoff">Click here <strong>ONLY</strong> if you do not have Telegram</a></p>
       </section>
     </div>
     <footer>© 2026 Evermore AI · Built for people ready to make their next move.</footer>
