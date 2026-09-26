@@ -95,11 +95,6 @@
       font-weight: 600;
       letter-spacing: 0.05em;
     }
-    .nav-cta-group {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
     .nav-cta {
       display: inline-flex;
       align-items: center;
@@ -113,10 +108,6 @@
       text-decoration: none;
       box-shadow: 0 4px 14px rgba(40, 121, 216, .35);
       transition: transform .2s, box-shadow .2s;
-    }
-    .nav-cta.wa {
-      background: linear-gradient(135deg, #24d366, #0c8f4b);
-      box-shadow: 0 4px 14px rgba(36, 211, 102, .3);
     }
     .nav-cta:hover {
       transform: translateY(-1px);
@@ -219,10 +210,6 @@
       border: 1px solid rgba(84, 231, 255, .4);
       animation: attention-pulse 2.8s ease-in-out infinite;
     }
-    .btn-cta.whatsapp-option {
-      background: linear-gradient(135deg, #24d366, #0c8f4b);
-      border: 1px solid rgba(36, 211, 102, .4);
-    }
     .btn-cta.secondary-how {
       background: rgba(255, 255, 255, .05);
       border: 1px solid var(--border);
@@ -304,22 +291,22 @@
     .explore-card h3 { margin: 0 0 8px; font-size: 18px; color: var(--cyan); }
     .explore-card p { margin: 0; font-size: 14px; color: #dce8ff; }
 
-    /* Online Business & Educational Disclaimer Section */
+    /* Online Business & Encouraging Testimonial Notice Section */
     .disclaimer-card {
-      background: rgba(246, 198, 91, .06);
-      border: 1px solid rgba(246, 198, 91, .3);
+      background: rgba(84, 231, 255, .06);
+      border: 1px solid rgba(84, 231, 255, .3);
       border-radius: 14px;
       padding: 16px 20px;
       margin-top: 20px;
-      color: #ffe8b3;
+      color: #dce8ff;
       font-size: 14px;
       display: flex;
       align-items: center;
       gap: 12px;
     }
     .disclaimer-badge {
-      background: var(--gold);
-      color: #000;
+      background: var(--cyan);
+      color: #080d27;
       font-weight: 800;
       font-size: 11px;
       text-transform: uppercase;
@@ -571,7 +558,7 @@
     @keyframes attention-pulse {
       0%, 62%, 100% { box-shadow: 0 0 0 0 rgba(84, 231, 255, 0); }
       72% { box-shadow: 0 0 0 8px rgba(84, 231, 255, .25); }
-      82% { box-shadow: 0 0 0 16px rgba(84, 231, 255, 0); }
+      82% { shadow: 0 0 0 16px rgba(84, 231, 255, 0); }
     }
     @media (max-width: 768px) {
       .hero-layout { grid-template-columns: 1fr; gap: 28px; }
@@ -582,29 +569,20 @@
 </head>
 <body>
 
-  <!-- Sticky Header with Brand and Dual Sticky CTAs -->
+  <!-- Sticky Header with Brand and Top CTA -->
   <header class="sticky-header">
     <div class="header-inner">
       <div class="brand-group">
         <a href="index.html" class="brand">EVERMORE AI</a>
         <span class="brand-tagline">Your Practical AI & Digital Skills Hub</span>
       </div>
-      <div class="nav-cta-group">
-        <a href="https://t.me/campushubmedia?text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20Evermore%20AI" 
-           class="nav-cta app-handshake-telegram" 
-           data-track-click 
-           data-track-handoff 
-           data-track-label="Header sticky Telegram CTA">
-           Explore Telegram →
-        </a>
-        <a href="https://wa.me/2347074474275?text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20Evermore%20AI" 
-           class="nav-cta wa app-handshake-whatsapp" 
-           data-track-click 
-           data-track-handoff 
-           data-track-label="Header sticky WhatsApp CTA">
-           WhatsApp Support
-        </a>
-      </div>
+      <a href="https://t.me/campushubmedia?text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20Evermore%20AI" 
+         class="nav-cta smart-social-handshake" 
+         data-track-click 
+         data-track-handoff 
+         data-track-label="Header sticky CTA">
+         Explore Evermore AI →
+      </a>
     </div>
   </header>
 
@@ -631,38 +609,24 @@
       <!-- Action Panel -->
       <div class="panel">
         <h2>Get Started Today</h2>
-        <p>Choose how you would like to connect with our platform guides and learning community:</p>
+        <p>Connect with our platform guides and join the active learning community.</p>
 
         <div class="cta-buttons">
-          <!-- Primary Telegram Option -->
+          <!-- Main Smart Handshake Primary Button -->
           <a href="https://t.me/campushubmedia?text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20Evermore%20AI" 
-             class="btn-cta primary-telegram app-handshake-telegram" 
+             class="btn-cta primary-telegram smart-social-handshake" 
              data-track-click 
              data-track-handoff 
              data-track-label="Hero Telegram Primary CTA">
             <span class="icon">✈️</span>
             <span>
-              <strong>Explore on Telegram App →</strong>
-              <small>Opens directly in Telegram app & community</small>
+              <strong>Explore Evermore AI →</strong>
+              <small>Opens directly in Telegram app or WhatsApp support</small>
             </span>
             <span class="arrow">→</span>
           </a>
 
-          <!-- Secondary WhatsApp Option (For users without Telegram) -->
-          <a href="https://wa.me/2347074474275?text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20Evermore%20AI" 
-             class="btn-cta whatsapp-option app-handshake-whatsapp" 
-             data-track-click 
-             data-track-handoff 
-             data-track-label="Hero WhatsApp Secondary CTA">
-            <span class="icon">💬</span>
-            <span>
-              <strong>Contact Support on WhatsApp →</strong>
-              <small>Use WhatsApp if you do not have Telegram</small>
-            </span>
-            <span class="arrow">→</span>
-          </a>
-
-          <!-- Smooth Scroll Link to See How It Works -->
+          <!-- Smooth Scroll Link -->
           <a href="#how-it-works" class="btn-cta secondary-how">
             See How It Works ↓
           </a>
@@ -681,13 +645,14 @@
           -->
         </div>
 
+        <!-- Single Line WhatsApp Fallback Text Link -->
         <div class="whatsapp-fallback-box">
           <a href="https://wa.me/2347074474275?text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20Evermore%20AI" 
-             class="whatsapp-link app-handshake-whatsapp" 
+             class="whatsapp-link smart-social-fallback" 
              data-track-click 
              data-track-handoff 
-             data-track-label="Hero WhatsApp fallback link">
-             No Telegram app? Tap here to chat on WhatsApp immediately →
+             data-track-label="Hero WhatsApp text link fallback">
+             Click here ONLY if Telegram does not open automatically (or to chat on WhatsApp) →
           </a>
         </div>
       </div>
@@ -736,8 +701,8 @@
       </p>
 
       <div class="disclaimer-card">
-        <span class="disclaimer-badge">Disclaimer</span>
-        <span>Results vary. No income or financial outcome is guaranteed.</span>
+        <span class="disclaimer-badge">Member Success</span>
+        <span>Many dedicated members share inspiring testimonies of applying these digital skills to build active online projects. Individual results depend on your effort and consistency.</span>
       </div>
     </section>
 
@@ -780,7 +745,7 @@
         <div class="pricing-box">
           <div>
             <span class="plan-badge">Introductory Access</span>
-            <div class="price-tag">Trial Plan</div>
+            <div class="price-tag">Trial: ₦6,999</div>
             <p style="margin: 6px 0 0; color: var(--muted); font-size: 14px;">Entry-level access to core digital tool guides and beginner resources.</p>
           </div>
 
@@ -805,7 +770,7 @@
         <div class="pricing-box featured">
           <div>
             <span class="plan-badge">★ Recommended</span>
-            <div class="price-tag">Premium: ₦14,500</div>
+            <div class="price-tag">Premium: ₦13,999</div>
             <p style="margin: 6px 0 0; color: var(--muted); font-size: 14px;">Full ecosystem access to all AI modules, affiliate marketing workflows, and 1-on-1 support.</p>
           </div>
 
@@ -843,8 +808,8 @@
       </ul>
 
       <div class="disclaimer-card" style="margin-top: 24px; background: rgba(84, 231, 255, .05); border-color: rgba(84, 231, 255, .3); color: #dce8ff;">
-        <span class="disclaimer-badge" style="background: var(--cyan);">Educational Notice</span>
-        <span>Evermore AI is educational. Participation does not guarantee employment, income, or a specific financial result.</span>
+        <span class="disclaimer-badge" style="background: var(--cyan);">Member Growth</span>
+        <span>Evermore AI provides practical guides and community support. Dedicated members share testimonies of real progress, while individual earnings reflect personal effort and dedication.</span>
       </div>
     </section>
 
@@ -869,7 +834,7 @@
             <span class="icon-toggle">+</span>
           </button>
           <div class="faq-accordion-body">
-            Yes. Certain Evermore AI resources and community access require payment. The applicable price (for Trial or Premium access) is shown before payment.
+            Yes. Certain Evermore AI resources and community access require payment. The applicable price (₦6,999 for Trial access or ₦13,999 for Premium access) is shown before payment.
           </div>
         </div>
 
@@ -879,7 +844,7 @@
             <span class="icon-toggle">+</span>
           </button>
           <div class="faq-accordion-body">
-            No specific income is guaranteed. Some resources may cover digital business models or online opportunities, but individual results depend on many factors.
+            Many members share positive testimonies of using our practical AI and digital business resources to build online projects. Individual results depend on your effort, consistency, and application.
           </div>
         </div>
 
@@ -916,27 +881,14 @@
 
       <div class="cta-buttons">
         <a href="https://t.me/campushubmedia?text=Hello%2C%20I%20have%20a%20question%20about%20Evermore%20AI%20access%20and%20payment" 
-           class="btn-cta primary-telegram app-handshake-telegram" 
+           class="btn-cta primary-telegram smart-social-handshake" 
            data-track-click 
            data-track-handoff 
            data-track-label="Contact Section Telegram Support">
           <span class="icon">✈️</span>
           <span>
-            <strong>Contact Support on Telegram →</strong>
+            <strong>Contact Support →</strong>
             <small>Direct help with access options & inquiries</small>
-          </span>
-          <span class="arrow">→</span>
-        </a>
-
-        <a href="https://wa.me/2347074474275?text=Hello%2C%20I%20have%20a%20question%20about%20Evermore%20AI%20access%20and%20payment" 
-           class="btn-cta whatsapp-option app-handshake-whatsapp" 
-           data-track-click 
-           data-track-handoff 
-           data-track-label="Contact Section WhatsApp Support">
-          <span class="icon">💬</span>
-          <span>
-            <strong>Contact Support on WhatsApp →</strong>
-            <small>Direct help on WhatsApp if you don't have Telegram</small>
           </span>
           <span class="arrow">→</span>
         </a>
@@ -954,36 +906,23 @@
         Start by reviewing what we offer and choose the learning resources that fit your goals.
       </p>
 
-      <div style="max-width: 460px; margin: 0 auto; display: grid; gap: 12px;">
+      <div style="max-width: 420px; margin: 0 auto;">
         <a href="https://t.me/campushubmedia?text=Hello%2C%20I%20am%20ready%20to%20explore%20Evermore%20AI" 
-           class="btn-cta primary-telegram app-handshake-telegram" 
+           class="btn-cta primary-telegram smart-social-handshake" 
            data-track-click 
            data-track-handoff 
            data-track-label="Final Section Telegram Primary CTA">
           <span class="icon">✈️</span>
           <span>
-            <strong>Explore Evermore AI on Telegram →</strong>
+            <strong>Explore Evermore AI →</strong>
             <small>Join community & explore learning resources</small>
-          </span>
-          <span class="arrow">→</span>
-        </a>
-
-        <a href="https://wa.me/2347074474275?text=Hello%2C%20I%20am%20ready%20to%20explore%20Evermore%20AI" 
-           class="btn-cta whatsapp-option app-handshake-whatsapp" 
-           data-track-click 
-           data-track-handoff 
-           data-track-label="Final Section WhatsApp Secondary CTA">
-          <span class="icon">💬</span>
-          <span>
-            <strong>Explore Evermore AI on WhatsApp →</strong>
-            <small>Connect directly via WhatsApp</small>
           </span>
           <span class="arrow">→</span>
         </a>
       </div>
 
       <div style="margin-top: 16px; font-size: 12px; color: var(--muted);">
-        No guaranteed income or employment is promised. Review the available access and pricing before payment.
+        Many dedicated members share inspiring testimonies of applying these tools. Review available access options before payment.
       </div>
     </section>
 
@@ -1019,9 +958,9 @@
       </div>
       <div class="assistant-questions" id="questionChips">
         <button class="question-chip" data-answer="Evermore AI is a digital skills and practical learning platform offering beginner guides for AI tools, online workflows, and digital business models.">What is Evermore AI?</button>
-        <button class="question-chip" data-answer="We offer Trial access and Premium access (₦14,500). Full pricing details are displayed before payment.">What are the pricing plans?</button>
-        <button class="question-chip" data-answer="No. Evermore AI is strictly an educational learning platform. No guaranteed income or employment is promised.">Is this a job or income offer?</button>
-        <button class="question-chip" data-answer="Yes! If you do not have Telegram installed, you can click the WhatsApp support button to chat directly on WhatsApp.">Can I use WhatsApp instead?</button>
+        <button class="question-chip" data-answer="We offer Trial access (₦6,999) and Premium access (₦13,999). Full pricing details are displayed before payment.">What are the pricing plans?</button>
+        <button class="question-chip" data-answer="Evermore AI provides practical digital skill training. Many learners share testimonies of successfully building online workflows, while individual results reflect personal effort and dedication.">Can I earn with these skills?</button>
+        <button class="question-chip" data-answer="Yes! If Telegram does not open automatically on your device, you can use WhatsApp support to chat directly with an agent.">Can I use WhatsApp instead?</button>
       </div>
     </div>
   </div>
@@ -1084,7 +1023,7 @@
           setTimeout(() => {
             const bDiv = document.createElement('div');
             bDiv.className = 'chat-msg bot';
-            bDiv.innerHTML = aText + `<br><br><a href="https://t.me/campushubmedia?text=Hello%2C%20I%20have%20a%20question%20about%20${encodeURIComponent(qText)}" style="color:var(--cyan);font-weight:bold;" data-track-click data-track-handoff class="app-handshake-telegram">Contact via Telegram →</a> | <a href="https://wa.me/2347074474275?text=Hello%2C%20I%20have%20a%20question%20about%20${encodeURIComponent(qText)}" style="color:#24d366;font-weight:bold;" data-track-click data-track-handoff class="app-handshake-whatsapp">Contact via WhatsApp →</a>`;
+            bDiv.innerHTML = aText + `<br><br><a href="https://t.me/campushubmedia?text=Hello%2C%20I%20have%20a%20question%20about%20${encodeURIComponent(qText)}" style="color:var(--cyan);font-weight:bold;" data-track-click data-track-handoff class="smart-social-handshake">Contact Support →</a>`;
             assistantMessages.appendChild(bDiv);
             assistantMessages.scrollTop = assistantMessages.scrollHeight;
           }, 300);
@@ -1094,58 +1033,67 @@
       });
     }
 
-    // App Protocol Deep Link Handlers
-    function setupAppHandshakes() {
-      // Telegram Handshake
-      document.querySelectorAll('.app-handshake-telegram').forEach(link => {
-        link.addEventListener('click', function(e) {
-          const href = this.getAttribute('href');
-          if (href && href.includes('t.me/')) {
-            const urlObj = new URL(href);
-            const domain = urlObj.pathname.replace('/', '');
-            const textParam = urlObj.searchParams.get('text') || '';
-            const deepLink = `tg://resolve?domain=${domain}&text=${encodeURIComponent(textParam)}`;
+    // Smart Cascading Social Handshake (Telegram App -> WhatsApp App -> Web Fallback)
+    function setupSmartSocialHandshake() {
+      const telegramWeb = "https://t.me/campushubmedia?text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20Evermore%20AI";
+      const telegramDeep = "tg://resolve?domain=campushubmedia&text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20Evermore%20AI";
+      const whatsappDeep = "whatsapp://send?phone=2347074474275&text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20Evermore%20AI";
 
-            const start = Date.now();
-            window.location.href = deepLink;
+      document.querySelectorAll('.smart-social-handshake').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          let appOpened = false;
+          const onVisibilityChange = () => {
+            if (document.hidden) {
+              appOpened = true;
+            }
+          };
+          document.addEventListener('visibilitychange', onVisibilityChange, { once: true });
+          window.addEventListener('blur', () => { appOpened = true; }, { once: true });
 
-            setTimeout(() => {
-              if (Date.now() - start < 1200) {
-                window.location.href = href;
-              }
-            }, 500);
+          // 1. Attempt Telegram App Deep Link
+          window.location.href = telegramDeep;
 
-            e.preventDefault();
-          }
+          // 2. If Telegram app doesn't open within 500ms (e.g. not installed or prompt canceled)
+          setTimeout(() => {
+            if (!appOpened) {
+              // 3. Attempt WhatsApp App Deep Link
+              window.location.href = whatsappDeep;
+
+              // 4. If WhatsApp also doesn't open within another 500ms, fallback seamlessly to Web Telegram
+              setTimeout(() => {
+                if (!appOpened) {
+                  window.location.href = telegramWeb;
+                }
+              }, 500);
+            }
+          }, 500);
         });
       });
 
-      // WhatsApp Handshake
-      document.querySelectorAll('.app-handshake-whatsapp').forEach(link => {
+      // Direct WhatsApp Text Link Fallback Handler
+      document.querySelectorAll('.smart-social-fallback').forEach(link => {
         link.addEventListener('click', function(e) {
+          e.preventDefault();
           const href = this.getAttribute('href');
-          if (href && href.includes('wa.me/')) {
-            const urlObj = new URL(href);
-            const phone = urlObj.pathname.replace('/', '');
-            const textParam = urlObj.searchParams.get('text') || '';
-            const deepLink = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(textParam)}`;
+          const whatsappDeepLink = "whatsapp://send?phone=2347074474275?text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20Evermore%20AI";
 
-            const start = Date.now();
-            window.location.href = deepLink;
+          let appOpened = false;
+          window.addEventListener('blur', () => { appOpened = true; }, { once: true });
 
-            setTimeout(() => {
-              if (Date.now() - start < 1200) {
-                window.location.href = href;
-              }
-            }, 500);
+          window.location.href = whatsappDeepLink;
 
-            e.preventDefault();
-          }
+          setTimeout(() => {
+            if (!appOpened) {
+              window.location.href = href;
+            }
+          }, 500);
         });
       });
     }
 
-    document.addEventListener('DOMContentLoaded', setupAppHandshakes);
+    document.addEventListener('DOMContentLoaded', setupSmartSocialHandshake);
   </script>
 </body>
 </html>
