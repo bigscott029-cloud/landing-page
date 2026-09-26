@@ -2,16 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Evermore AI | Build Your Digital Edge</title>
+  <title>Evermore AI | Your Practical AI & Digital Skills Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Get practical AI guidance, digital skills, and a connected community built for your next move.">
+  <meta name="description" content="Learn practical AI tools, digital skills, and online workflows you can apply at your own pace with Evermore AI.">
   <meta name="theme-color" content="#080d27">
+
+  <!-- Analytics & Deep-Link Scripts -->
   <script>
     window.AFFILIATE_ANALYTICS = { siteId: "high-posting-jobs", endpoint: "https://affiliate-analytics.chikeeluem171.workers.dev/track" };
   </script>
   <script src="js/utils.js?v=20260909" defer></script>
   <script src="js/fingerprint.js?v=20260909" defer></script>
   <script src="js/tracker.js?v=20260912" defer></script>
+  <script src="js/social-redirect.js?v=20260925" defer></script>
+
+  <!-- TikTok Pixel Code -->
   <script>
   !function (w, d, t) {
     w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
@@ -19,63 +24,1128 @@
     ttq.page();
   }(window, document, 'ttq');
   </script>
+
   <style>
-    :root { color-scheme: dark; --navy: #080d27; --panel: rgba(18, 28, 67, .78); --cyan: #54e7ff; --gold: #f6c65b; --muted: #a9b8dd; }
+    :root {
+      color-scheme: dark;
+      --navy: #080d27;
+      --panel: rgba(18, 28, 67, .78);
+      --cyan: #54e7ff;
+      --gold: #f6c65b;
+      --muted: #a9b8dd;
+      --border: rgba(141, 170, 235, .22);
+    }
     * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; color: #f7fbff; font: 16px/1.6 Arial, sans-serif; background: radial-gradient(circle at 85% 10%, rgba(38, 137, 222, .3), transparent 32%), radial-gradient(circle at 5% 90%, rgba(101, 67, 208, .3), transparent 36%), var(--navy); }
-    body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .3; background-image: linear-gradient(rgba(84, 231, 255, .08) 1px, transparent 1px), linear-gradient(90deg, rgba(84, 231, 255, .08) 1px, transparent 1px); background-size: 42px 42px; mask-image: linear-gradient(to bottom, black, transparent 80%); }
-    main { position: relative; width: min(100% - 32px, 1080px); margin: auto; padding: 34px 0 28px; }
-    .brand { color: var(--gold); font-weight: 800; letter-spacing: .18em; text-transform: uppercase; font-size: 13px; }
-    .layout { display: grid; grid-template-columns: 1.1fr .9fr; gap: 36px; align-items: center; min-height: calc(100vh - 90px); }
-    .eyebrow { color: var(--cyan); font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
-    h1 { max-width: 690px; margin: 14px 0 18px; font-size: clamp(42px, 7vw, 76px); line-height: .98; letter-spacing: -.05em; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: #f7fbff;
+      font: 16px/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: radial-gradient(circle at 85% 10%, rgba(38, 137, 222, .25), transparent 32%),
+                  radial-gradient(circle at 5% 90%, rgba(101, 67, 208, .25), transparent 36%),
+                  var(--navy);
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .25;
+      background-image: linear-gradient(rgba(84, 231, 255, .08) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(84, 231, 255, .08) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+      z-index: 0;
+    }
+
+    /* Sticky Navigation */
+    header.sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 13, 39, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand {
+      color: var(--gold);
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .brand-tagline {
+      font-size: 11px;
+      color: var(--cyan);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .nav-cta-group {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #44b9ff, #2879d8);
+      color: #fff;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 16px;
+      border-radius: 99px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(40, 121, 216, .35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .nav-cta.wa {
+      background: linear-gradient(135deg, #24d366, #0c8f4b);
+      box-shadow: 0 4px 14px rgba(36, 211, 102, .3);
+    }
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(84, 231, 255, .4);
+    }
+
+    /* Main Container */
+    main {
+      position: relative;
+      z-index: 1;
+      width: min(100% - 32px, 1080px);
+      margin: auto;
+      padding: 24px 0 60px;
+    }
+
+    /* Supporting Line */
+    .top-supporting-line {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      background: rgba(18, 28, 67, .5);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 6px 18px;
+      width: fit-content;
+      margin: 10px auto 28px;
+    }
+
+    /* Hero Layout */
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 36px;
+      align-items: center;
+      padding: 20px 0 40px;
+    }
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 690px;
+      margin: 12px 0 16px;
+      font-size: clamp(34px, 5.5vw, 60px);
+      line-height: 1.05;
+      letter-spacing: -.04em;
+    }
     h1 span { color: var(--cyan); }
-    .lead { max-width: 560px; color: var(--muted); font-size: 19px; }
-    .proof { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 0; color: #dce8ff; font-size: 14px; }
-    .proof span { border: 1px solid rgba(84, 231, 255, .25); border-radius: 99px; padding: 7px 12px; background: rgba(11, 22, 59, .55); }
-    .panel { border: 1px solid rgba(141, 170, 235, .25); border-radius: 24px; padding: 28px; background: var(--panel); box-shadow: 0 24px 80px rgba(0, 0, 0, .25); backdrop-filter: blur(16px); }
-    .panel h2 { margin: 0 0 6px; font-size: 24px; }
-    .panel p { margin: 0 0 20px; color: var(--muted); }
-    .options { display: grid; gap: 12px; }
-    .option { display: flex; align-items: center; gap: 14px; border: 1px solid rgba(141, 170, 235, .28); border-radius: 16px; padding: 16px; color: #fff; text-decoration: none; transition: transform .2s, border-color .2s, background .2s; }
-    .option.telegram { animation: attention-pulse 2.8s ease-in-out infinite; }
-    .option:hover, .option:focus-visible { transform: translateY(-2px); border-color: var(--cyan); background: rgba(84, 231, 255, .1); outline: none; }
-    .icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 13px; background: linear-gradient(135deg, #24d366, #0c8f4b); font-size: 22px; }
-    .option.telegram .icon { background: linear-gradient(135deg, #44b9ff, #2879d8); }
-    .option strong { display: block; }
-    .option small { color: var(--muted); }
-    .arrow { margin-left: auto; color: var(--cyan); font-size: 22px; }
-    .whatsapp-fallback { display: inline-block; margin-top: 12px; color: #8fa6d7; font-size: 12px; text-underline-offset: 3px; }
-    .whatsapp-fallback:hover, .whatsapp-fallback:focus-visible { color: var(--cyan); }
-    .note { margin-top: 18px !important; font-size: 12px; }
-    footer { margin-top: 30px; color: #7182ac; font-size: 12px; }
-    @keyframes attention-pulse { 0%, 62%, 100% { box-shadow: 0 0 0 0 rgba(84, 231, 255, 0); } 72% { box-shadow: 0 0 0 8px rgba(84, 231, 255, .16); } 82% { box-shadow: 0 0 0 16px rgba(84, 231, 255, 0); } }
-    @media (prefers-reduced-motion: reduce) { .option.telegram { animation: none; } }
-    @media (max-width: 760px) { main { padding-top: 24px; } .layout { grid-template-columns: 1fr; gap: 28px; min-height: auto; padding-top: 54px; } h1 { font-size: clamp(42px, 14vw, 64px); } .lead { font-size: 17px; } }
+    .lead {
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .proof-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+      color: #dce8ff;
+      font-size: 14px;
+    }
+    .proof-badges span {
+      border: 1px solid rgba(84, 231, 255, .3);
+      border-radius: 99px;
+      padding: 6px 14px;
+      background: rgba(11, 22, 59, .65);
+    }
+
+    /* Hero CTA Panel */
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      background: var(--panel);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .3);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .panel h2 { margin: 0 0 8px; font-size: 22px; color: #fff; }
+    .panel p { margin: 0 0 18px; color: var(--muted); font-size: 14px; }
+    
+    .cta-buttons { display: grid; gap: 14px; }
+    .btn-cta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-radius: 16px;
+      padding: 16px 20px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform .2s, border-color .2s, background .2s;
+    }
+    .btn-cta.primary-telegram {
+      background: linear-gradient(135deg, #44b9ff, #2879d8);
+      border: 1px solid rgba(84, 231, 255, .4);
+      animation: attention-pulse 2.8s ease-in-out infinite;
+    }
+    .btn-cta.whatsapp-option {
+      background: linear-gradient(135deg, #24d366, #0c8f4b);
+      border: 1px solid rgba(36, 211, 102, .4);
+    }
+    .btn-cta.secondary-how {
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid var(--border);
+      color: #dce8ff;
+      justify-content: center;
+    }
+    .btn-cta:hover { transform: translateY(-2px); filter: brightness(1.1); }
+    .btn-cta .icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .2);
+      font-size: 20px;
+    }
+    .btn-cta strong { display: block; font-size: 16px; }
+    .btn-cta small { font-weight: normal; font-size: 12px; color: rgba(255, 255, 255, .9); }
+    .arrow { margin-left: auto; color: #fff; font-size: 20px; }
+
+    .whatsapp-fallback-box {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border);
+      text-align: center;
+    }
+    .whatsapp-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #24d366;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .whatsapp-link:hover { text-decoration: underline; color: #54e7ff; }
+
+    /* Content Section Styling */
+    .section-block {
+      margin: 48px 0;
+      padding: 32px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+    }
+    .section-title {
+      font-size: clamp(22px, 3vw, 30px);
+      margin: 0 0 16px;
+      color: #fff;
+    }
+    .section-subtitle {
+      color: var(--muted);
+      font-size: 16px;
+      margin-top: -8px;
+      margin-bottom: 24px;
+    }
+
+    /* Grid for What You Can Explore */
+    .explore-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .explore-card {
+      background: rgba(8, 13, 39, .6);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      transition: transform .2s, border-color .2s;
+    }
+    .explore-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--cyan);
+    }
+    .explore-card .card-icon { font-size: 28px; margin-bottom: 10px; display: block; }
+    .explore-card h3 { margin: 0 0 8px; font-size: 18px; color: var(--cyan); }
+    .explore-card p { margin: 0; font-size: 14px; color: #dce8ff; }
+
+    /* Online Business & Educational Disclaimer Section */
+    .disclaimer-card {
+      background: rgba(246, 198, 91, .06);
+      border: 1px solid rgba(246, 198, 91, .3);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-top: 20px;
+      color: #ffe8b3;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .disclaimer-badge {
+      background: var(--gold);
+      color: #000;
+      font-weight: 800;
+      font-size: 11px;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    /* Steps Layout for How It Works */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .step-card {
+      background: rgba(11, 22, 59, .7);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+    }
+    .step-number {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      background: var(--cyan);
+      color: #080d27;
+      font-weight: 800;
+      border-radius: 50%;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .step-card h3 { margin: 0 0 8px; font-size: 17px; color: #fff; }
+    .step-card p { margin: 0; font-size: 14px; color: var(--muted); }
+
+    /* Dual Pricing Plan Layout */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .pricing-box {
+      background: linear-gradient(145deg, rgba(18, 28, 67, .9), rgba(8, 13, 39, .95));
+      border: 1px solid rgba(84, 231, 255, .3);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .pricing-box.featured {
+      border-color: var(--gold);
+      box-shadow: 0 10px 30px rgba(246, 198, 91, .15);
+    }
+    .plan-badge {
+      display: inline-block;
+      color: var(--cyan);
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .pricing-box.featured .plan-badge {
+      color: var(--gold);
+    }
+    .price-tag {
+      font-size: 32px;
+      font-weight: 800;
+      color: #fff;
+      margin: 12px 0 6px;
+    }
+    .pricing-box.featured .price-tag {
+      color: var(--gold);
+    }
+    .accordion-toggle {
+      width: 100%;
+      background: rgba(84, 231, 255, .1);
+      border: 1px solid rgba(84, 231, 255, .3);
+      color: var(--cyan);
+      font-weight: 700;
+      padding: 12px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      margin-top: 16px;
+      transition: background .2s;
+    }
+    .accordion-toggle:hover { background: rgba(84, 231, 255, .2); }
+    .accordion-content {
+      display: none;
+      padding: 16px 4px 4px;
+      color: #dce8ff;
+      font-size: 14px;
+    }
+    .accordion-content.active { display: block; }
+    .accordion-content ul { padding-left: 20px; margin: 10px 0; }
+    .accordion-content li { margin-bottom: 8px; }
+
+    /* Checkmark List for Who It's For */
+    .check-list { list-style: none; padding: 0; margin: 20px 0; }
+    .check-list li {
+      position: relative;
+      padding-left: 32px;
+      margin-bottom: 12px;
+      font-size: 16px;
+      color: #dce8ff;
+    }
+    .check-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--cyan);
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    /* Inline FAQ Accordion */
+    .faq-accordion { margin-top: 20px; display: grid; gap: 12px; }
+    .faq-accordion-item {
+      background: rgba(11, 22, 59, .6);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .faq-accordion-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 16px 20px;
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-accordion-btn span.icon-toggle { color: var(--cyan); font-size: 20px; transition: transform .2s; }
+    .faq-accordion-btn.active span.icon-toggle { transform: rotate(45deg); }
+    .faq-accordion-body {
+      display: none;
+      padding: 0 20px 18px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .faq-accordion-body.active { display: block; }
+
+    /* Floating Bot Assistant Widget */
+    .assistant-float-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      background: linear-gradient(135deg, #54e7ff, #2879d8);
+      color: #080d27;
+      border: none;
+      border-radius: 99px;
+      padding: 12px 20px;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 8px 30px rgba(84, 231, 255, .4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .assistant-float-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 40px rgba(84, 231, 255, .6);
+    }
+    .assistant-drawer {
+      position: fixed;
+      bottom: 84px;
+      right: 24px;
+      z-index: 1000;
+      width: min(calc(100vw - 32px), 380px);
+      max-height: 520px;
+      background: var(--navy);
+      border: 1px solid var(--cyan);
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .8);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .assistant-drawer.open { display: flex; }
+    .assistant-header {
+      background: rgba(18, 28, 67, .95);
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .assistant-header h4 { margin: 0; color: #fff; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+    .assistant-close { background: none; border: none; color: var(--muted); font-size: 20px; cursor: pointer; }
+    .assistant-body { padding: 16px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 12px; }
+    .chat-msg { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 13px; line-height: 1.5; }
+    .chat-msg.bot { background: rgba(18, 28, 67, .9); border: 1px solid var(--border); color: #dce8ff; align-self: flex-start; }
+    .chat-msg.user { background: var(--cyan); color: #080d27; font-weight: 600; align-self: flex-end; }
+    .assistant-questions { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+    .question-chip {
+      background: rgba(84, 231, 255, .1);
+      border: 1px solid rgba(84, 231, 255, .25);
+      color: var(--cyan);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      text-align: left;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .question-chip:hover { background: rgba(84, 231, 255, .2); }
+
+    /* Footer */
+    footer.main-footer {
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: #7182ac;
+      font-size: 13px;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin: 14px 0 20px;
+    }
+    .footer-links a {
+      color: var(--cyan);
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .footer-links a:hover { text-underline-offset: 4px; text-decoration: underline; }
+
+    @keyframes attention-pulse {
+      0%, 62%, 100% { box-shadow: 0 0 0 0 rgba(84, 231, 255, 0); }
+      72% { box-shadow: 0 0 0 8px rgba(84, 231, 255, .25); }
+      82% { box-shadow: 0 0 0 16px rgba(84, 231, 255, 0); }
+    }
+    @media (max-width: 768px) {
+      .hero-layout { grid-template-columns: 1fr; gap: 28px; }
+      h1 { font-size: clamp(30px, 8vw, 44px); }
+      .section-block { padding: 22px 18px; }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <div class="brand">Evermore AI</div>
-    <div class="layout">
-      <section>
-        <div class="eyebrow">Your next digital advantage</div>
-        <h1>Turn curiosity into an <span>AI-powered edge.</span></h1>
-        <p class="lead">Get practical guidance, useful digital skills, and a focused community that helps you move from watching opportunities to taking action.</p>
-        <div class="proof"><span>✓ Beginner-friendly</span><span>✓ Learn at your pace</span><span>✓ Real community support</span></div>
-      </section>
-      <section class="panel">
-        <h2>Choose your connection</h2>        
-        <div class="options">
-          <!-- <a href="https://wa.me/2349078501664?text=Hello%2C+I+am+interested+in+getting+started+with+EverAi" class="option" data-track-click data-track-handoff data-track-label="WhatsApp direct message handoff"><span class="icon" aria-hidden="true">◉</span><span><strong>Message Us on WhatsApp</strong><small>Get in touch with an agent and recieve a direct response to learn and get started</small></span><span class="arrow" aria-hidden="true">→</span></a> -->
-          <!-- <a href="https://chat.whatsapp.com/BC25ondiZY0GpTxxUlo0lP?s=cl&p=i&mlu=4&ilr=4" class="option" data-track-click data-track-handoff data-track-label="WhatsApp group handoff"><span class="icon" aria-hidden="true">◉</span><span><strong>Join The WhatsApp Community</strong><small>Open the group, then tap “Join group” in WhatsApp</small></span><span class="arrow" aria-hidden="true">→</span></a> -->
-          <a href="https://t.me/campushubmedia?text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20EverAi" class="option telegram" data-track-click data-track-handoff data-track-label="Telegram handoff"><span class="icon" aria-hidden="true">➤</span><span><strong>Get Connected On Telegram Now</strong><small>Get In Touch With An Active Agent, Get Started And Join The Community, Active 24/7</small></span><span class="arrow" aria-hidden="true">→</span></a>
-        </div>
-          <br>
-          <a href="https://wa.me/2347074474275?text=Hello%2C+I+am+interested+in+getting+started+with+EverAi" class="whatsapp-fallback" data-track-click data-track-handoff data-track-label="WhatsApp direct message handoff">Click here <strong>ONLY</strong> if you do not have Telegram</a>
-      </section>
+
+  <!-- Sticky Header with Brand and Dual Sticky CTAs -->
+  <header class="sticky-header">
+    <div class="header-inner">
+      <div class="brand-group">
+        <a href="index.html" class="brand">EVERMORE AI</a>
+        <span class="brand-tagline">Your Practical AI & Digital Skills Hub</span>
       </div>
-    <footer>© 2026 Evermore AI · Built for people ready to make their next move.</footer>
+      <div class="nav-cta-group">
+        <a href="https://t.me/campushubmedia?text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20Evermore%20AI" 
+           class="nav-cta app-handshake-telegram" 
+           data-track-click 
+           data-track-handoff 
+           data-track-label="Header sticky Telegram CTA">
+           Explore Telegram →
+        </a>
+        <a href="https://wa.me/2347074474275?text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20Evermore%20AI" 
+           class="nav-cta wa app-handshake-whatsapp" 
+           data-track-click 
+           data-track-handoff 
+           data-track-label="Header sticky WhatsApp CTA">
+           WhatsApp Support
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Supporting Header Line -->
+    <div class="top-supporting-line">
+      Learn practical AI tools, digital skills, and online workflows you can apply at your own pace.
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-layout">
+      <div>
+        <div class="eyebrow">Practical AI & Digital Skills</div>
+        <h1>Turn Your Curiosity Into <span>Practical Digital Skills</span></h1>
+        <p class="lead">Learn how to use AI tools, discover practical digital workflows, and develop skills for today's online environment.</p>
+        
+        <div class="proof-badges">
+          <span>✓ Beginner-friendly</span>
+          <span>✓ Learn at your own pace</span>
+          <span>✓ Community support</span>
+        </div>
+      </div>
+
+      <!-- Action Panel -->
+      <div class="panel">
+        <h2>Get Started Today</h2>
+        <p>Choose how you would like to connect with our platform guides and learning community:</p>
+
+        <div class="cta-buttons">
+          <!-- Primary Telegram Option -->
+          <a href="https://t.me/campushubmedia?text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20Evermore%20AI" 
+             class="btn-cta primary-telegram app-handshake-telegram" 
+             data-track-click 
+             data-track-handoff 
+             data-track-label="Hero Telegram Primary CTA">
+            <span class="icon">✈️</span>
+            <span>
+              <strong>Explore on Telegram App →</strong>
+              <small>Opens directly in Telegram app & community</small>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+
+          <!-- Secondary WhatsApp Option (For users without Telegram) -->
+          <a href="https://wa.me/2347074474275?text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20Evermore%20AI" 
+             class="btn-cta whatsapp-option app-handshake-whatsapp" 
+             data-track-click 
+             data-track-handoff 
+             data-track-label="Hero WhatsApp Secondary CTA">
+            <span class="icon">💬</span>
+            <span>
+              <strong>Contact Support on WhatsApp →</strong>
+              <small>Use WhatsApp if you do not have Telegram</small>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+
+          <!-- Smooth Scroll Link to See How It Works -->
+          <a href="#how-it-works" class="btn-cta secondary-how">
+            See How It Works ↓
+          </a>
+
+          <!-- 
+            ========================================================================
+            PRESERVED COMMENTED-OUT ALTERNATE LINKS FOR EASY ACTIVATION WHEN NEEDED:
+            ========================================================================
+
+            1) Direct WhatsApp Agent Handoff:
+            <a href="https://wa.me/2349078501664?text=Hello%2C+I+am+interested+in+getting+started+with+EverAi" class="option" data-track-click data-track-handoff data-track-label="WhatsApp direct message handoff"><span class="icon" aria-hidden="true">◉</span><span><strong>Message Us on WhatsApp</strong><small>Get in touch with an agent and receive a direct response to learn and get started</small></span><span class="arrow" aria-hidden="true">→</span></a>
+
+            2) WhatsApp Group Community Handoff:
+            <a href="https://chat.whatsapp.com/BC25ondiZY0GpTxxUlo0lP?s=cl&p=i&mlu=4&ilr=4" class="option" data-track-click data-track-handoff data-track-label="WhatsApp group handoff"><span class="icon" aria-hidden="true">◉</span><span><strong>Join The WhatsApp Community</strong><small>Open the group, then tap “Join group” in WhatsApp</small></span><span class="arrow" aria-hidden="true">→</span></a>
+            ========================================================================
+          -->
+        </div>
+
+        <div class="whatsapp-fallback-box">
+          <a href="https://wa.me/2347074474275?text=Hello%2C%20I%20am%20interested%20in%20getting%20started%20with%20Evermore%20AI" 
+             class="whatsapp-link app-handshake-whatsapp" 
+             data-track-click 
+             data-track-handoff 
+             data-track-label="Hero WhatsApp fallback link">
+             No Telegram app? Tap here to chat on WhatsApp immediately →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: What Is Evermore AI? -->
+    <section id="about" class="section-block">
+      <h2 class="section-title">What Is Evermore AI?</h2>
+      <p class="lead" style="margin-bottom: 0;">
+        Evermore AI is a learning and community platform designed to help beginners understand and apply practical AI and digital tools. We bring together guides, practical resources, digital workflows, and community support so you can spend less time figuring everything out alone and more time actually learning and applying what you discover.
+      </p>
+    </section>
+
+    <!-- Section 4: What You Can Explore -->
+    <section id="learn" class="section-block">
+      <h2 class="section-title">What You Can Explore</h2>
+      <div class="explore-grid">
+        <div class="explore-card">
+          <span class="card-icon">🤖</span>
+          <h3>AI Tools</h3>
+          <p>Discover practical ways to use modern AI tools for everyday digital tasks.</p>
+        </div>
+        <div class="explore-card">
+          <span class="card-icon">💻</span>
+          <h3>Digital Skills</h3>
+          <p>Learn useful skills for content, productivity, research, online workflows, and digital projects.</p>
+        </div>
+        <div class="explore-card">
+          <span class="card-icon">📚</span>
+          <h3>Practical Guides</h3>
+          <p>Follow beginner-friendly resources designed to help you understand concepts and put them into practice.</p>
+        </div>
+        <div class="explore-card">
+          <span class="card-icon">👥</span>
+          <h3>Community Support</h3>
+          <p>Connect with other learners and get guidance as you work through the material.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Interested in Online Business? -->
+    <section id="online-business" class="section-block">
+      <h2 class="section-title">Interested in Online Business?</h2>
+      <p class="lead">
+        Evermore AI also provides educational resources covering digital business models, including affiliate marketing. Learn how these models work, how to evaluate opportunities, and how to apply the relevant digital tools.
+      </p>
+
+      <div class="disclaimer-card">
+        <span class="disclaimer-badge">Disclaimer</span>
+        <span>Results vary. No income or financial outcome is guaranteed.</span>
+      </div>
+    </section>
+
+    <!-- Section 6: How Evermore AI Works -->
+    <section id="how-it-works" class="section-block">
+      <h2 class="section-title">How Evermore AI Works</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <span class="step-number">1</span>
+          <h3>Explore</h3>
+          <p>Review what Evermore AI offers and decide whether it's relevant to your goals.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-number">2</span>
+          <h3>Choose Your Access</h3>
+          <p>Review the available access options (Trial or Premium) and their price before making a payment.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-number">3</span>
+          <h3>Get Started</h3>
+          <p>Receive access to the applicable learning resources and community.</p>
+        </div>
+        <div class="step-card">
+          <span class="step-number">4</span>
+          <h3>Learn & Apply</h3>
+          <p>Work through the resources at your own pace and apply what you learn.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Access & Pricing (Trial & Premium Plans) -->
+    <section id="pricing" class="section-block">
+      <h2 class="section-title">Access & Pricing Options</h2>
+      <p class="lead">
+        Evermore AI offers paid access to selected learning resources and community features. The applicable price will be displayed clearly before payment. Payment is required only after you have reviewed your preferred option and decided to proceed.
+      </p>
+
+      <div class="pricing-grid">
+        <!-- Plan 1: Trial / Starter Access Plan -->
+        <div class="pricing-box">
+          <div>
+            <span class="plan-badge">Introductory Access</span>
+            <div class="price-tag">Trial Plan</div>
+            <p style="margin: 6px 0 0; color: var(--muted); font-size: 14px;">Entry-level access to core digital tool guides and beginner resources.</p>
+          </div>
+
+          <div>
+            <button class="accordion-toggle" id="trialToggle">
+              <span>View Trial Plan Details</span>
+              <span id="trialArrow">↓</span>
+            </button>
+
+            <div class="accordion-content" id="trialContent">
+              <ul>
+                <li><strong>Core AI Tools & Guides:</strong> Access to beginner AI prompt templates and basic workflow guides.</li>
+                <li><strong>Starter Community Access:</strong> Entry into our general learner discussion group.</li>
+                <li><strong>Self-Paced Resources:</strong> Learn at your own pace with digital guides.</li>
+                <li><strong>Upgradable:</strong> Easily upgrade to Premium access at any time.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plan 2: Premium / Full Ecosystem Plan -->
+        <div class="pricing-box featured">
+          <div>
+            <span class="plan-badge">★ Recommended</span>
+            <div class="price-tag">Premium: ₦14,500</div>
+            <p style="margin: 6px 0 0; color: var(--muted); font-size: 14px;">Full ecosystem access to all AI modules, affiliate marketing workflows, and 1-on-1 support.</p>
+          </div>
+
+          <div>
+            <button class="accordion-toggle" id="premiumToggle" style="border-color: rgba(246, 198, 91, .4); color: var(--gold);">
+              <span>View Premium Plan Details</span>
+              <span id="premiumArrow">↓</span>
+            </button>
+
+            <div class="accordion-content" id="premiumContent">
+              <ul>
+                <li><strong>Complete AI & Skill Modules:</strong> Advanced prompt engineering, content automation, and productivity tools.</li>
+                <li><strong>Affiliate & Business Workflows:</strong> Step-by-step guides on online business evaluation and digital campaign workflows.</li>
+                <li><strong>Private Telegram Community Access:</strong> Priority access to our interactive learner community.</li>
+                <li><strong>Direct Support Agent Assistance:</strong> Priority 1-on-1 support for account setup and navigation questions.</li>
+                <li><strong>One-Time Payment:</strong> Clear upfront pricing with no hidden recurring subscription fees.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: Who Is This For? -->
+    <section id="who-its-for" class="section-block">
+      <h2 class="section-title">Who Is This For?</h2>
+      <p class="section-subtitle">Evermore AI may be useful if you:</p>
+
+      <ul class="check-list">
+        <li>Want to understand practical AI tools</li>
+        <li>Want to develop useful digital skills</li>
+        <li>Prefer beginner-friendly learning resources</li>
+        <li>Want guidance rather than figuring everything out alone</li>
+        <li>Are exploring legitimate online business and digital opportunities</li>
+      </ul>
+
+      <div class="disclaimer-card" style="margin-top: 24px; background: rgba(84, 231, 255, .05); border-color: rgba(84, 231, 255, .3); color: #dce8ff;">
+        <span class="disclaimer-badge" style="background: var(--cyan);">Educational Notice</span>
+        <span>Evermore AI is educational. Participation does not guarantee employment, income, or a specific financial result.</span>
+      </div>
+    </section>
+
+    <!-- Section 9: FAQ -->
+    <section id="faq" class="section-block">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      
+      <div class="faq-accordion">
+        <div class="faq-accordion-item">
+          <button class="faq-accordion-btn">
+            Is Evermore AI a job?
+            <span class="icon-toggle">+</span>
+          </button>
+          <div class="faq-accordion-body">
+            No. Evermore AI is a learning and digital-skills platform. It should not be interpreted as an employment offer unless a specific opportunity is explicitly identified as such.
+          </div>
+        </div>
+
+        <div class="faq-accordion-item">
+          <button class="faq-accordion-btn">
+            Do I have to pay?
+            <span class="icon-toggle">+</span>
+          </button>
+          <div class="faq-accordion-body">
+            Yes. Certain Evermore AI resources and community access require payment. The applicable price (for Trial or Premium access) is shown before payment.
+          </div>
+        </div>
+
+        <div class="faq-accordion-item">
+          <button class="faq-accordion-btn">
+            Will I make money from Evermore AI?
+            <span class="icon-toggle">+</span>
+          </button>
+          <div class="faq-accordion-body">
+            No specific income is guaranteed. Some resources may cover digital business models or online opportunities, but individual results depend on many factors.
+          </div>
+        </div>
+
+        <div class="faq-accordion-item">
+          <button class="faq-accordion-btn">
+            Is Evermore AI suitable for beginners?
+            <span class="icon-toggle">+</span>
+          </button>
+          <div class="faq-accordion-body">
+            Yes. The resources are designed to be accessible to people who are still developing their digital skills.
+          </div>
+        </div>
+
+        <div class="faq-accordion-item">
+          <button class="faq-accordion-btn">
+            How do I get support?
+            <span class="icon-toggle">+</span>
+          </button>
+          <div class="faq-accordion-body">
+            You can contact Evermore AI support or access the community through Telegram or WhatsApp.
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; text-align: center;">
+        <a href="faq.html" class="nav-cta" style="background: rgba(84, 231, 255, .1); border: 1px solid var(--cyan); color: var(--cyan);">View Full FAQ Page →</a>
+      </div>
+    </section>
+
+    <!-- Section 10: Contact Support -->
+    <section id="contact" class="section-block">
+      <h2 class="section-title">Need Help?</h2>
+      <p class="lead">Have a question about Evermore AI, access options, or payment?</p>
+
+      <div class="cta-buttons">
+        <a href="https://t.me/campushubmedia?text=Hello%2C%20I%20have%20a%20question%20about%20Evermore%20AI%20access%20and%20payment" 
+           class="btn-cta primary-telegram app-handshake-telegram" 
+           data-track-click 
+           data-track-handoff 
+           data-track-label="Contact Section Telegram Support">
+          <span class="icon">✈️</span>
+          <span>
+            <strong>Contact Support on Telegram →</strong>
+            <small>Direct help with access options & inquiries</small>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <a href="https://wa.me/2347074474275?text=Hello%2C%20I%20have%20a%20question%20about%20Evermore%20AI%20access%20and%20payment" 
+           class="btn-cta whatsapp-option app-handshake-whatsapp" 
+           data-track-click 
+           data-track-handoff 
+           data-track-label="Contact Section WhatsApp Support">
+          <span class="icon">💬</span>
+          <span>
+            <strong>Contact Support on WhatsApp →</strong>
+            <small>Direct help on WhatsApp if you don't have Telegram</small>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <div style="margin-top: 20px; font-size: 14px; color: var(--muted);">
+        Community: Connect with the Evermore AI community on Telegram or WhatsApp.
+      </div>
+    </section>
+
+    <!-- Section 11: Final CTA -->
+    <section id="ready" class="section-block" style="text-align: center; background: linear-gradient(135deg, rgba(18, 28, 67, .9), rgba(101, 67, 208, .3));">
+      <h2 class="section-title" style="font-size: clamp(26px, 4vw, 36px);">Ready to Explore Evermore AI?</h2>
+      <p class="lead" style="max-width: 600px; margin: 0 auto 24px;">
+        Start by reviewing what we offer and choose the learning resources that fit your goals.
+      </p>
+
+      <div style="max-width: 460px; margin: 0 auto; display: grid; gap: 12px;">
+        <a href="https://t.me/campushubmedia?text=Hello%2C%20I%20am%20ready%20to%20explore%20Evermore%20AI" 
+           class="btn-cta primary-telegram app-handshake-telegram" 
+           data-track-click 
+           data-track-handoff 
+           data-track-label="Final Section Telegram Primary CTA">
+          <span class="icon">✈️</span>
+          <span>
+            <strong>Explore Evermore AI on Telegram →</strong>
+            <small>Join community & explore learning resources</small>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <a href="https://wa.me/2347074474275?text=Hello%2C%20I%20am%20ready%20to%20explore%20Evermore%20AI" 
+           class="btn-cta whatsapp-option app-handshake-whatsapp" 
+           data-track-click 
+           data-track-handoff 
+           data-track-label="Final Section WhatsApp Secondary CTA">
+          <span class="icon">💬</span>
+          <span>
+            <strong>Explore Evermore AI on WhatsApp →</strong>
+            <small>Connect directly via WhatsApp</small>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <div style="margin-top: 16px; font-size: 12px; color: var(--muted);">
+        No guaranteed income or employment is promised. Review the available access and pricing before payment.
+      </div>
+    </section>
+
+    <!-- Section 12: Footer -->
+    <footer class="main-footer">
+      <div>© 2026 Evermore AI. All rights reserved.</div>
+      <div style="margin-top: 4px;">Evermore AI is an independent digital learning and community platform.</div>
+
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+        <a href="refund.html">Refund Policy</a>
+        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+    </footer>
   </main>
+
+  <!-- Floating Assistant Bot Launcher Button -->
+  <button class="assistant-float-btn" id="assistantToggle">
+    💬 <span>Assistant</span>
+  </button>
+
+  <!-- Interactive Assistant Modal Drawer -->
+  <div class="assistant-drawer" id="assistantDrawer">
+    <div class="assistant-header">
+      <h4>🤖 Evermore AI Assistant</h4>
+      <button class="assistant-close" id="assistantClose">&times;</button>
+    </div>
+    <div class="assistant-body" id="assistantMessages">
+      <div class="chat-msg bot">
+        Hello! I am your Evermore AI assistant. How can I help you explore our learning resources today? Select a question below:
+      </div>
+      <div class="assistant-questions" id="questionChips">
+        <button class="question-chip" data-answer="Evermore AI is a digital skills and practical learning platform offering beginner guides for AI tools, online workflows, and digital business models.">What is Evermore AI?</button>
+        <button class="question-chip" data-answer="We offer Trial access and Premium access (₦14,500). Full pricing details are displayed before payment.">What are the pricing plans?</button>
+        <button class="question-chip" data-answer="No. Evermore AI is strictly an educational learning platform. No guaranteed income or employment is promised.">Is this a job or income offer?</button>
+        <button class="question-chip" data-answer="Yes! If you do not have Telegram installed, you can click the WhatsApp support button to chat directly on WhatsApp.">Can I use WhatsApp instead?</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Scripts -->
+  <script>
+    // Collapsible Plan Details (Trial & Premium)
+    function setupPlanToggle(toggleId, contentId, arrowId) {
+      const toggle = document.getElementById(toggleId);
+      const content = document.getElementById(contentId);
+      const arrow = document.getElementById(arrowId);
+      if (toggle && content) {
+        toggle.addEventListener('click', () => {
+          const isActive = content.classList.toggle('active');
+          if (arrow) arrow.textContent = isActive ? '↑' : '↓';
+        });
+      }
+    }
+    setupPlanToggle('trialToggle', 'trialContent', 'trialArrow');
+    setupPlanToggle('premiumToggle', 'premiumContent', 'premiumArrow');
+
+    // Inline FAQ Accordions
+    document.querySelectorAll('.faq-accordion-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('active');
+        const body = btn.nextElementSibling;
+        if (body) {
+          body.classList.toggle('active');
+        }
+      });
+    });
+
+    // Assistant Float Bot Drawer
+    const assistantToggle = document.getElementById('assistantToggle');
+    const assistantDrawer = document.getElementById('assistantDrawer');
+    const assistantClose = document.getElementById('assistantClose');
+    const assistantMessages = document.getElementById('assistantMessages');
+    const questionChips = document.getElementById('questionChips');
+
+    if (assistantToggle && assistantDrawer) {
+      assistantToggle.addEventListener('click', () => {
+        assistantDrawer.classList.toggle('open');
+      });
+      assistantClose.addEventListener('click', () => {
+        assistantDrawer.classList.remove('open');
+      });
+    }
+
+    if (questionChips) {
+      questionChips.querySelectorAll('.question-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const qText = chip.textContent;
+          const aText = chip.getAttribute('data-answer');
+
+          const uDiv = document.createElement('div');
+          uDiv.className = 'chat-msg user';
+          uDiv.textContent = qText;
+          assistantMessages.appendChild(uDiv);
+
+          setTimeout(() => {
+            const bDiv = document.createElement('div');
+            bDiv.className = 'chat-msg bot';
+            bDiv.innerHTML = aText + `<br><br><a href="https://t.me/campushubmedia?text=Hello%2C%20I%20have%20a%20question%20about%20${encodeURIComponent(qText)}" style="color:var(--cyan);font-weight:bold;" data-track-click data-track-handoff class="app-handshake-telegram">Contact via Telegram →</a> | <a href="https://wa.me/2347074474275?text=Hello%2C%20I%20have%20a%20question%20about%20${encodeURIComponent(qText)}" style="color:#24d366;font-weight:bold;" data-track-click data-track-handoff class="app-handshake-whatsapp">Contact via WhatsApp →</a>`;
+            assistantMessages.appendChild(bDiv);
+            assistantMessages.scrollTop = assistantMessages.scrollHeight;
+          }, 300);
+
+          assistantMessages.scrollTop = assistantMessages.scrollHeight;
+        });
+      });
+    }
+
+    // App Protocol Deep Link Handlers
+    function setupAppHandshakes() {
+      // Telegram Handshake
+      document.querySelectorAll('.app-handshake-telegram').forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href && href.includes('t.me/')) {
+            const urlObj = new URL(href);
+            const domain = urlObj.pathname.replace('/', '');
+            const textParam = urlObj.searchParams.get('text') || '';
+            const deepLink = `tg://resolve?domain=${domain}&text=${encodeURIComponent(textParam)}`;
+
+            const start = Date.now();
+            window.location.href = deepLink;
+
+            setTimeout(() => {
+              if (Date.now() - start < 1200) {
+                window.location.href = href;
+              }
+            }, 500);
+
+            e.preventDefault();
+          }
+        });
+      });
+
+      // WhatsApp Handshake
+      document.querySelectorAll('.app-handshake-whatsapp').forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href && href.includes('wa.me/')) {
+            const urlObj = new URL(href);
+            const phone = urlObj.pathname.replace('/', '');
+            const textParam = urlObj.searchParams.get('text') || '';
+            const deepLink = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(textParam)}`;
+
+            const start = Date.now();
+            window.location.href = deepLink;
+
+            setTimeout(() => {
+              if (Date.now() - start < 1200) {
+                window.location.href = href;
+              }
+            }, 500);
+
+            e.preventDefault();
+          }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', setupAppHandshakes);
+  </script>
 </body>
 </html>
